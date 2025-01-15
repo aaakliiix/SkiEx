@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkiEx Tracker</title>
+  <style>
+    /* General Styles */
+body {
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+  margin: 20px;
+  padding: 0;
+  background-color: #E0F7FA; /* Light cyan for a snowy feel */
+  color: #37474F; /* Charcoal gray for text */
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.exercise-list {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #FFFFFF; /* Snow white */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 10px;
+}
+
+.exercise {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #FAFAFA; /* Light background for each exercise */
+}
+
+.timer {
+  font-size: 14px;
+  color: #0288D1; /* Deep blue for timers */
+}
+
+.timer-btn {
+  background-color: #FF7043; /* Bright orange */
+  color: #FFFFFF; /* White text */
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.timer-btn:hover {
+  background-color: #F4511E; /* Darker orange on hover */
+}
+
+.notification {
+  display: none;
+  text-align: center;
+  background: #66BB6A; /* Bright green for success */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lobito SkiEx Tracker</h1>
+  <img src="skiing.png" alt="Logo" style="width: 100px;">
+  <p id="today">Today is:</p>
+  </header>
+
+  <div id="notification" class="notification"></div>
+  <div id="today"></div>
+  <div class="exercise-list">
+    <h3 id="exercise-header">Today's Exercises</h3>
+    <div id="exercise-container">
+      <!-- Exercises will be dynamically inserted here -->
+    </div>
+    <audio id="notification-sound" src="ding.mp3"></audio> 
+<div id="notification" style="display:none;"></div>
+</div>
+
+<script>
+  const exercises = {
+    Monday: {
+      WarmUp: [
+        { name: "Jumping Jacks (1 min)", duration: 1 },
+        { name: "Arm Circles (1 min)", duration: 1 },
+        { name: "Leg Swings (1 min per leg)", duration: 1 },
+      ],
+      Exercise: [
+        { name: "Body weight Squats (3x10)", duration: 3 },
+        { name: "Lunges (2x30)", duration: 3 },
+        { name: "Glute Bridges (1 min)", duration: 1 },
+        { name: "Wall Sit (30 seconds)", duration: .3 },
+        { name: "Plank (30 seconds)", duration: .3 },
+        { name: "Side Plank (30 seconds per side)", duration: 1 },
+        { name: "Single Deadligts (30 seconds per leg)", duration: .3 },
+        { name: "Bird Dogs (30 per side)", duration: 1 },
+        { name: "Push-ups (3x10)", duration: 3 },
+        { name: "Triceps Dips (3x10)", duration: 3 },
+      ],
+      CoolDown: [
+        { name: "Harmstring stretch (1 min)", duration: 1 },
+        { name: "Hip Flexor stretch (1 min)", duration: 1 },
+        { name: "Quad stretch (1 min)", duration: 1 },
+        { name: "Calf stretch (1 min)", duration: 1 },
+        { name: "Child's Pose (1 min)", duration: 1 },
+      ],
+    },
+    Tuesday: {
+      WarmUp: [
+        { name: "Light Cardio (5 min)", duration: 5 },
+      ],
+      Exercise: [
+      ],
+      CoolDown: [
+        { name: "Harmstring stretch (1 min)", duration: 1 },
+        { name: "Hip Flexor stretch (1 min)", duration: 1 },
+        { name: "Quad stretch (1 min)", duration: 1 },
+        { name: "Calf stretch (1 min)", duration: 1 },
+        { name: "Child's Pose (1 min)", duration: 1 },
+      ],
+    },
+    Wednesday: {
+      WarmUp: [
+        { name: "Jumping Jacks (1 min)", duration: 1 },
+        { name: "Arm Circles (1 min)", duration: 1 },
+        { name: "Leg Swings (1 min per leg)", duration: 1 },
+      ],
+      Exercise: [
+        { name: "Body weight Squats (3x10)", duration: 3 },
+        { name: "Lunges (2x30)", duration: 3 },
+        { name: "Glute Bridges (1 min)", duration: 1 },
+        { name: "Wall Sit (30 seconds)", duration: 1 },
+        { name: "Plank (30 seconds)", duration: 1 },
+        { name: "Side Plank (30 seconds per side)", duration: 1 },
+        { name: "Single Deadligts (30 seconds per leg)", duration: 1 },
+        { name: "Bird Dogs (30 per side)", duration: 1 },
+      ],
+      CoolDown: [
+        { name: "Harmstring stretch (1 min)", duration: 1 },
+        { name: "Hip Flexor stretch (1 min)", duration: 1 },
+        { name: "Quad stretch (1 min)", duration: 1 },
+        { name: "Calf stretch (1 min)", duration: 1 },
+        { name: "Child's Pose (1 min)", duration: 1 },
+      ],
+    },
+    Thursday: {
+      WarmUp: [
+        { name: "Jumping Jacks (1 min)", duration: 1 },
+        { name: "Arm Circles (1 min)", duration: 1 },
+        { name: "Leg Swings (1 min per leg)", duration: 1 },
+      ],
+      Exercise: [
+        { name: "Jumping Squats (1 min)", duration: 1 },
+        { name: "Lateral Skater Jumps (1 min)", duration: 1 },
+        { name: "Mountain Climbers (1 min)", duration: 1 },
+      ],
+      CoolDown: [
+        { name: "Harmstring stretch (1 min)", duration: 1 },
+        { name: "Hip Flexor stretch (1 min)", duration: 1 },
+        { name: "Quad stretch (1 min)", duration: 1 },
+        { name: "Calf stretch (1 min)", duration: 1 },
+        { name: "Child's Pose (1 min)", duration: 1 },
+      ],
+    },
+      Friday: {
+      WarmUp: [
+        { name: "Jumping Jacks (1 min)", duration: 1 },
+        { name: "Arm Circles (1 min)", duration: 1 },
+        { name: "Leg Swings (1 min per leg)", duration: 1 },
+      ],
+      Exercise: [
+        { name: "Body weight Squats (3x10)", duration: 3 },
+        { name: "Lunges (2x30)", duration: 3 },
+        { name: "Glute Bridges (1 min)", duration: 1 },
+        { name: "Wall Sit (30 seconds)", duration: 0.3 },
+        { name: "Plank (30 seconds)", duration: .3 },
+        { name: "Side Plank (30 seconds per side)", duration: 1 },
+        { name: "Single Deadligts (30 seconds per leg)", duration: 1 },
+        { name: "Bird Dogs (30 per side)", duration: 1 },
+        { name: "Push-ups (3x10)", duration: 3 },
+        { name: "Triceps Dips (3x10)", duration: 3 },
+      ],
+      CoolDown: [
+        { name: "Harmstring stretch (1 min)", duration: 1 },
+        { name: "Hip Flexor stretch (1 min)", duration: 1 },
+        { name: "Quad stretch (1 min)", duration: 1 },
+        { name: "Calf stretch (1 min)", duration: 1 },
+        { name: "Child's Pose (1 min)", duration: 1 },
+      ],
+    },
+  };
+
+  const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
+  document.getElementById("today").textContent = `Today is: ${today}`;
+
+  const exerciseContainer = document.getElementById("exercise-container");
+  const exercisesForToday = exercises[today] || {
+    WarmUp: [{ name: "No warm-up scheduled.", duration: 0 }],
+    Exercise: [{ name: "No exercises scheduled.", duration: 0 }],
+    CoolDown: [{ name: "No cool down scheduled.", duration: 0 }],
+  };
+
+  // Helper function to render exercises by category
+  function renderCategory(categoryName, categoryExercises) {
+    let totalCategoryTime = 0;
+
+    const categoryHeader = document.createElement("h3");
+    categoryHeader.textContent = categoryName;
+    exerciseContainer.appendChild(categoryHeader);
+
+    categoryExercises.forEach((exercise) => {
+      totalCategoryTime += exercise.duration; // Sum up total time for the category
+
+      const exerciseDiv = document.createElement("div");
+      exerciseDiv.className = "exercise";
+      exerciseDiv.innerHTML = `
+        <span>${exercise.name}</span>
+        <button class="timer-btn" onclick="startTimer(this, ${exercise.duration * 60})">Start Timer</button>
+        <span class="timer">${exercise.duration}:00</span>
+      `;
+      exerciseContainer.appendChild(exerciseDiv);
+    });
+
+    const totalTimeDiv = document.createElement("div");
+    totalTimeDiv.className = "exercise total-time";
+    totalTimeDiv.textContent = `Total time for ${categoryName}: ${totalCategoryTime} minutes`;
+    exerciseContainer.appendChild(totalTimeDiv);
+
+    return totalCategoryTime;
+  }
+
+  // Calculate and render all categories
+  let totalTime = 0;
+  totalTime += renderCategory("Warm-Up", exercisesForToday.WarmUp);
+  totalTime += renderCategory("Exercise", exercisesForToday.Exercise);
+  totalTime += renderCategory("Cool Down", exercisesForToday.CoolDown);
+
+  // Display total time for the day
+  const totalTimeDiv = document.createElement("div");
+  totalTimeDiv.className = "exercise total-time-day";
+  totalTimeDiv.style.fontWeight = "bold";
+  totalTimeDiv.textContent = `Total exercise time for today: ${totalTime} minutes`;
+  exerciseContainer.appendChild(totalTimeDiv);
+
+  // Timer function
+  function startTimer(button, duration) {
+    const timer = button.nextElementSibling;
+    let time = duration;
+    button.disabled = true;
+    const interval = setInterval(() => {
+      const minutes = Math.floor(time / 60);
+      const seconds = time % 60;
+      timer.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+      time--;
+      if (time < 0) {
+        clearInterval(interval);
+        timer.textContent = "Done!";
+        button.disabled = false;
+        showNotification(`${button.previousElementSibling.textContent} completed!`);
+      }
+    }, 1000);
+  }
+
+  // Notification function
+  function showNotification(message) {
+    const notification = document.getElementById("notification");
+    const audio = document.getElementById("notification-sound");
+    notification.textContent = message;
+    notification.style.display = "block";
+    audio.play(); // Play the sound
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
+  }
+</script>
+</body>
+</html>
