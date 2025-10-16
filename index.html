@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LobitoWolfX Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"> 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     :root {
@@ -65,7 +68,7 @@
       padding: 8px 12px;
       font-weight: 600;
       cursor: pointer;
-      transition: background .2s;
+      transition: background 0.2s;
     }
 
     .nav button:hover {
@@ -122,7 +125,7 @@
       padding: 12px;
       display: flex;
       flex-direction: column;
-      transition: opacity .2s, background .2s;
+      transition: opacity 0.2s, background 0.2s;
       position: relative;
     }
 
@@ -137,7 +140,7 @@
       margin-bottom: 8px;
     }
 
-    .exercise-header input[type="checkbox"] {
+    .exercise-header input[type='checkbox'] {
       margin-right: 8px;
       accent-color: var(--accent);
       width: 18px;
@@ -168,7 +171,7 @@
       border-radius: var(--radius);
       padding: 6px 10px;
       cursor: pointer;
-      transition: background .2s;
+      transition: background 0.2s;
     }
 
     .timer-btn:hover {
@@ -186,7 +189,7 @@
 <body>
   <header>
     <h1>Lobito SkiEx Tracker</h1>
-    <img src="ExWolf.png" alt="Logo">
+    <img src="ExWolf.png" alt="Logo" />
   </header>
 
   <div class="nav">
@@ -204,24 +207,159 @@
 
   <script>
     const exercises = {
-      Monday: { /* … your Monday data … */ },
-      Tuesday: { /* … your Tuesday data … */ },
-      Wednesday: { /* … */ },
-      Thursday: { /* … */ },
-      Friday: { /* … */ },
+      Monday: {
+        WarmUp: [
+          { name: "Jumping Jacks (1 min)", duration: 1 },
+          { name: "Arm Circles (1 min)", duration: 1 },
+          { name: "Leg Swings (1 min per leg)", duration: 1 },
+          { name: "Downward Dog (1 min)", duration: 1 },
+        ],
+        Exercise: [
+          { name: "Body weight Squats (3x10)", duration: 3 },
+          { name: "Lunges (2x30)", duration: 3 },
+          { name: "Glute Bridges (1 min)", duration: 1 },
+          { name: "Wall Sit (30 seconds)", duration: 0.5 },
+          { name: "Bicep Curls (3x10)", duration: 3 },
+          { name: "Plank (30 seconds)", duration: 0.5 },
+          { name: "Side Plank (30 seconds per side)", duration: 1 },
+          { name: "Single Deadlifts (30 seconds per leg)", duration: 0.5 },
+          { name: "Bird Dogs (30 per side)", duration: 1 },
+          { name: "Push-ups (3x10)", duration: 3 },
+          { name: "Triceps Dips (3x10)", duration: 3 },
+          { name: "Dolphin Pose (1 min)", duration: 1 },
+        ],
+        CoolDown: [
+          { name: "Hamstring stretch (1 min)", duration: 1 },
+          { name: "Hip Flexor stretch (1 min)", duration: 1 },
+          { name: "Quad stretch (1 min)", duration: 1 },
+          { name: "Calf stretch (1 min)", duration: 1 },
+          { name: "Child's Pose (1 min)", duration: 1 },
+          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
+          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
+          { name: "Sphinx Pose (1 min)", duration: 1 },
+        ],
+      },
+      Tuesday: {
+        WarmUp: [
+          { name: "Light Cardio (5 min)", duration: 5 },
+          { name: "Downward Dog (1 min)", duration: 1 },
+        ],
+        Exercise: [],
+        CoolDown: [
+          { name: "Hamstring stretch (1 min)", duration: 1 },
+          { name: "Hip Flexor stretch (1 min)", duration: 1 },
+          { name: "Quad stretch (1 min)", duration: 1 },
+          { name: "Calf stretch (1 min)", duration: 1 },
+          { name: "Child's Pose (1 min)", duration: 1 },
+          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
+          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
+          { name: "Sphinx Pose (1 min)", duration: 1 },
+        ],
+      },
+      Wednesday: {
+        WarmUp: [
+          { name: "Jumping Jacks (1 min)", duration: 1 },
+          { name: "Arm Circles (1 min)", duration: 1 },
+          { name: "Leg Swings (1 min per leg)", duration: 1 },
+          { name: "Downward Dog (1 min)", duration: 1 },
+        ],
+        Exercise: [
+          { name: "Body weight Squats (3x10)", duration: 3 },
+          { name: "Lunges (2x30)", duration: 3 },
+          { name: "Glute Bridges (1 min)", duration: 1 },
+          { name: "Wall Sit (30 seconds)", duration: 0.5 },
+          { name: "Bicep Curls (3x10)", duration: 3 },
+          { name: "Plank (30 seconds)", duration: 0.5 },
+          { name: "Side Plank (30 seconds per side)", duration: 1 },
+          { name: "Single Deadlifts (30 seconds per leg)", duration: 0.5 },
+          { name: "Bird Dogs (30 per side)", duration: 1 },
+          { name: "Dolphin Pose (1 min)", duration: 1 },
+        ],
+        CoolDown: [
+          { name: "Hamstring stretch (1 min)", duration: 1 },
+          { name: "Hip Flexor stretch (1 min)", duration: 1 },
+          { name: "Quad stretch (1 min)", duration: 1 },
+          { name: "Calf stretch (1 min)", duration: 1 },
+          { name: "Child's Pose (1 min)", duration: 1 },
+          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
+          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
+          { name: "Sphinx Pose (1 min)", duration: 1 },
+        ],
+      },
+      Thursday: {
+        WarmUp: [
+          { name: "Jumping Jacks (1 min)", duration: 1 },
+          { name: "Arm Circles (1 min)", duration: 1 },
+          { name: "Leg Swings (1 min per leg)", duration: 1 },
+          { name: "Downward Dog (1 min)", duration: 1 },
+        ],
+        Exercise: [
+          { name: "Jumping Squats (1 min)", duration: 1 },
+          { name: "Lateral Skater Jumps (1 min)", duration: 1 },
+          { name: "Mountain Climbers (1 min)", duration: 1 },
+          { name: "Dolphin Pose (1 min)", duration: 1 },
+        ],
+        CoolDown: [
+          { name: "Hamstring stretch (1 min)", duration: 1 },
+          { name: "Hip Flexor stretch (1 min)", duration: 1 },
+          { name: "Quad stretch (1 min)", duration: 1 },
+          { name: "Calf stretch (1 min)", duration: 1 },
+          { name: "Child's Pose (1 min)", duration: 1 },
+          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
+          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
+          { name: "Sphinx Pose (1 min)", duration: 1 },
+        ],
+      },
+      Friday: {
+        WarmUp: [
+          { name: "Jumping Jacks (1 min)", duration: 1 },
+          { name: "Arm Circles (1 min)", duration: 1 },
+          { name: "Leg Swings (1 min per leg)", duration: 1 },
+          { name: "Downward Dog (1 min)", duration: 1 },
+        ],
+        Exercise: [
+          { name: "Body weight Squats (3x10)", duration: 3 },
+          { name: "Lunges (2x30)", duration: 3 },
+          { name: "Glute Bridges (1 min)", duration: 1 },
+          { name: "Wall Sit (30 seconds)", duration: 0.5 },
+          { name: "Bicep Curls (3x10)", duration: 3 },
+          { name: "Plank (30 seconds)", duration: 0.5 },
+          { name: "Side Plank (30 seconds per side)", duration: 1 },
+          { name: "Single Deadlifts (30 seconds per leg)", duration: 0.5 },
+          { name: "Bird Dogs (30 per side)", duration: 1 },
+          { name: "Push-ups (3x10)", duration: 3 },
+          { name: "Triceps Dips (3x10)", duration: 3 },
+          { name: "Dolphin Pose (1 min)", duration: 1 },
+        ],
+        CoolDown: [
+          { name: "Hamstring stretch (1 min)", duration: 1 },
+          { name: "Hip Flexor stretch (1 min)", duration: 1 },
+          { name: "Quad stretch (1 min)", duration: 1 },
+          { name: "Calf stretch (1 min)", duration: 1 },
+          { name: "Child's Pose (1 min)", duration: 1 },
+          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
+          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
+          { name: "Sphinx Pose (1 min)", duration: 1 },
+        ],
+      },
       Saturday: { WarmUp: [], Exercise: [], CoolDown: [] },
       Sunday:   { WarmUp: [], Exercise: [], CoolDown: [] }
     };
 
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    let idx = days.indexOf(new Date()
-      .toLocaleDateString('en-US', { weekday: 'long' })
+    const days = [
+      'Sunday','Monday','Tuesday','Wednesday',
+      'Thursday','Friday','Saturday'
+    ];
+    let idx = days.indexOf(
+      new Date().toLocaleDateString('en-US', { weekday: 'long' })
     );
 
     const prevBtn = document.getElementById('prev-day');
     const nextBtn = document.getElementById('next-day');
     const dayLabel = document.getElementById('day-label');
     const container = document.getElementById('exercise-container');
+    const notification = document.getElementById('notification');
+    const ding = document.getElementById('notification-sound');
 
     prevBtn.addEventListener('click', () => {
       idx = (idx + 6) % 7;
@@ -236,6 +374,7 @@
     function renderForDay(day) {
       dayLabel.textContent = `Routine for ${day}`;
       container.innerHTML = '';
+      let totalTime = 0;
 
       const data = exercises[day] || {
         WarmUp: [{ name: "No warm-up.", duration: 0 }],
@@ -243,13 +382,10 @@
         CoolDown: [{ name: "No cool-down.", duration: 0 }]
       };
 
-      let totalTime = 0;
-      ['WarmUp','Exercise','CoolDown'].forEach(section => {
-        const items = data[section] || [];
-        const header = section === 'WarmUp' ? 'Warm-Up' :
-                       section === 'CoolDown' ? 'Cool-Down' : 'Exercise';
-        totalTime += renderCategory(header, items);
-      });
+      [['WarmUp','Warm-Up'],['Exercise','Exercise'],['CoolDown','Cool-Down']]
+        .forEach(([key,title]) => {
+          totalTime += renderCategory(title, data[key]);
+        });
 
       const totalDiv = document.createElement('div');
       totalDiv.className = 'total-time-day';
@@ -278,8 +414,72 @@
         // header with checkbox + name
         const header = document.createElement('div');
         header.className = 'exercise-header';
-        header.innerHTML = `
-          <input type="checkbox" />
-          <span>${item.name}</span>
-        `;
-        card.append
+        const chk = document.createElement('input');
+        chk.type = 'checkbox';
+        chk.addEventListener('change', () => {
+          card.classList.toggle('completed', chk.checked);
+        });
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = item.name;
+        header.append(chk, nameSpan);
+
+        // details with timer + button
+        const details = document.createElement('div');
+        details.className = 'details';
+        const timerSpan = document.createElement('span');
+        timerSpan.className = 'timer';
+        timerSpan.textContent = `${item.duration}:00`;
+        const btn = document.createElement('button');
+        btn.className = 'timer-btn';
+        btn.textContent = 'Start Timer';
+        btn.addEventListener('click', () => {
+          startTimer(item.name, timerSpan, item.duration * 60, btn);
+        });
+
+        details.append(timerSpan, btn);
+        card.append(header, details);
+        grid.appendChild(card);
+      });
+
+      cat.appendChild(grid);
+
+      const totalSec = document.createElement('div');
+      totalSec.className = 'total-time';
+      totalSec.textContent = `Total time for ${title}: ${sectionTime} minutes`;
+      cat.appendChild(totalSec);
+
+      container.appendChild(cat);
+      return sectionTime;
+    }
+
+    function startTimer(name, displayEl, duration, button) {
+      let time = duration;
+      button.disabled = true;
+      const interval = setInterval(() => {
+        const m = Math.floor(time / 60);
+        const s = time % 60;
+        displayEl.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+        time--;
+        if (time < 0) {
+          clearInterval(interval);
+          displayEl.textContent = 'Done!';
+          button.disabled = false;
+          showNotification(`${name} completed!`);
+        }
+      }, 1000);
+    }
+
+    function showNotification(msg) {
+      notification.textContent = msg;
+      notification.style.display = 'block';
+      ding.play();
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+
+    // initial render
+    renderForDay(days[idx]);
+  </script>
+</body>
+</html>
