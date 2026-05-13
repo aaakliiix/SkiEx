@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hot Lobito: Gym Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Consistent Branding */
+    :root {
+      --bg: #0b0d0f; /* Slightly darker for the gym */
+      --card-bg: #16191d;
+      --text-main: #e0e0e0;
+      --text-dim: #909090;
+      --accent: #ff4d4d; 
+      --accent-muted: #3d1a1a;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --radius: 12px;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-style: italic;
+      margin: 0;
+      letter-spacing: -1px;
+    }
+
+    header img {
+      width: 80px;
+      margin: 20px 0;
+      filter: drop-shadow(0 0 10px rgba(255, 77, 77, 0.3));
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+
+    .nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    #day-label {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+    }
+
+    .category h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-top: 40px;
+      border-left: 3px solid var(--accent);
+      padding-left: 15px;
+    }
+
+    .exercise {
+      background: var(--card-bg);
+      margin-bottom: 12px;
+      padding: 20px;
+      border-radius: var(--radius);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .exercise:hover {
+      border-color: var(--accent-muted);
+    }
+
+    .exercise-info h4 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .exercise-info p {
+      margin: 4px 0 0;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .timer-btn {
+      background: var(--accent-muted);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      padding: 15px 25px;
+      border-radius: var(--radius);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Hot Lobito: Gym Edition</h1>
+    <img src="ExWolf.png" alt="Logo">
+    <p style="font-size: 0.8rem; letter-spacing: 3px; color: var(--text-dim);">LEVELING UP FOR HOT LESBIAN SUMMER</p>
+  </header>
+
+  <div class="nav">
+    <a href="index.html">← Back to Home Base</a>
+    <span id="day-label">Monday</span>
+    <span style="width: 80px;"></span> </div>
+
+  <div id="notification"></div>
+  <div class="exercise-list" id="gym-container" style="max-width: 700px; margin: 0 auto;"></div>
+
+  <script>
+    // GYM SPECIFIC DATABASE
+    const masterGymBody = [
+      { name: "Leg Press", detail: "Machine - 3x10 (Controlled Reps)", duration: 3 },
+      { name: "Seated DB Shoulder Press", detail: "Dumbbells - 3x10", duration: 3 },
+      { name: "Cable Lateral Raises", detail: "Constant Tension - 3x12", duration: 3 },
+      { name: "Lat Pulldowns", detail: "Wide Grip - 3x10", duration: 3 },
+      { name: "Cable Tricep Pushdown", detail: "Rope Attachment - 3x12", duration: 3 },
+      { name: "Barbell Bicep Curls", detail: "Straight Bar - 3x10", duration: 3 },
+      { name: "Hanging Leg Raises", detail: "The Abs Secret - 3xMax", duration: 2 },
+      { name: "Cable Crunches", detail: "Kneeling on floor - 3x15", duration: 3 }
+    ];
+
+    function renderGym() {
+      const container = document.getElementById('gym-container');
+      
+      const sections = [
+        { title: "The Work (Gym Edition)", list: masterGymBody }
+      ];
+
+      sections.forEach(s => {
+        const sectionDiv = document.createElement('div');
+        sectionDiv.className = 'category';
+        sectionDiv.innerHTML = `<h3>${s.title}</h3>`;
+        
+        s.list.forEach(ex => {
+          const card = document.createElement('div');
+          card.className = 'exercise';
+          card.innerHTML = `
+            <div class="exercise-info">
+              <h4>${ex.name}</h4>
+              <p>${ex.detail}</p>
+            </div>
+            <button class="timer-btn">Start Sets</button>
+          `;
+          sectionDiv.appendChild(card);
+        });
+        container.appendChild(sectionDiv);
+      });
+    }
+
+    renderGym();
+  </script>
+</body>
+</html>
