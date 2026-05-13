@@ -13,7 +13,7 @@
       --card-bg: #1a1d21;
       --text-main: #e0e0e0;
       --text-dim: #909090;
-      --accent: #ff4d4d; /* Strategic red accent */
+      --accent: #ff4d4d;
       --accent-muted: #3d1a1a;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Inter', sans-serif;
@@ -40,6 +40,11 @@
       font-style: italic;
       margin: 0;
       letter-spacing: -1px;
+    }
+
+    header img {
+      width: 100px;
+      margin: 20px 0;
     }
 
     .nav {
@@ -139,15 +144,6 @@
       cursor: pointer;
     }
 
-    .total-summary {
-      text-align: center;
-      margin-top: 60px;
-      color: var(--text-dim);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
     /* Notification */
     #notification {
       position: fixed;
@@ -167,8 +163,8 @@
 
   <header>
     <h1>Hot Lobito: The Project</h1>
-    <img src="ExWolf.png" alt="Logo"></img>
-    <p style="font-size: 0.8rem; letter-spacing: 3px; color: var(--text-dim);">1% Gym Rat 99% Hot Lesbian Energy</p>
+    <img src="ExWolf.png" alt="Logo">
+    <p style="font-size: 0.8rem; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase;">1% Gym Rat, 99% Hot Lesbian Energy</p>
   </header>
 
   <div class="nav">
@@ -182,22 +178,18 @@
   <div class="exercise-list" id="exercise-container"></div>
 
   <script>
-    // NEW INTEGRAL DATABASE
     const masterFullBody = [
-      // --- THE FOUNDATION ---
-      { name: "Goblet Squats", detail: "Barbell/Dumbbell - 3x12", duration: 3, cat: "Legs" },
-      { name: "Overhead Press", detail: "Barbell (6kg) - 3x10", duration: 3, cat: "Shoulders/Arms" },
-      { name: "Lateral Raises", detail: "Slow & Controlled - 3x12", duration: 3, cat: "Shoulders/Arms" },
-      { name: "Push-ups", detail: "Chest Focus - 3x10", duration: 3, cat: "Upper Body" },
-      // --- THE "OH DAMN" ARMS ---
-      { name: "Bicep Curls", detail: "Dumbbells - 3x12", duration: 3, cat: "Shoulders/Arms" },
-      { name: "Hammer Curls", detail: "Dumbbells (Neutral Grip) - 3x10", duration: 3, cat: "Shoulders/Arms" },
-      { name: "Triceps Dips", detail: "Chair/Couch - 3x12", duration: 3, cat: "Shoulders/Arms" },  
-      // --- THE ABS REVOLUTION ---
-      { name: "Hollow Body Hold", detail: "Lower back glued to floor - 45 sec", duration: 1, cat: "Core" },
-      { name: "Flutter Kicks", detail: "Hands under glutes - 1 min", duration: 1, cat: "Core" },
-      { name: "Plank Shoulder Taps", detail: "Minimal hip rock - 1 min", duration: 1, cat: "Core" },
-      { name: "Deadbugs", detail: "Slow & Controlled - 1 min", duration: 1, cat: "Core" }
+      { name: "Goblet Squats", detail: "Barbell/Dumbbell - 3x12", duration: 3 },
+      { name: "Overhead Press", detail: "Barbell (6kg) - 3x10", duration: 3 },
+      { name: "Lateral Raises", detail: "Slow & Controlled - 3x12", duration: 3 },
+      { name: "Push-ups", detail: "Chest Focus - 3x10", duration: 3 },
+      { name: "Bicep Curls", detail: "Dumbbells - 3x12", duration: 3 },
+      { name: "Hammer Curls", detail: "Dumbbells (Neutral Grip) - 3x10", duration: 3 },
+      { name: "Triceps Dips", detail: "Chair/Couch - 3x12", duration: 3 },
+      { name: "Hollow Body Hold", detail: "Lower back glued to floor - 45 sec", duration: 1 },
+      { name: "Flutter Kicks", detail: "Hands under glutes - 1 min", duration: 1 },
+      { name: "Plank Shoulder Taps", detail: "Minimal hip rock - 1 min", duration: 1 },
+      { name: "Deadbugs", detail: "Slow & Controlled - 1 min", duration: 1 }
     ];
 
     const warmUp = [
@@ -212,7 +204,6 @@
       { name: "Cobra Stretch", detail: "Abs", duration: 1 }
     ];
 
-    // AUTO-POPULATE LOGIC
     const exercises = {
       Monday: { WarmUp: warmUp, Exercise: masterFullBody, CoolDown: coolDown },
       Tuesday: { WarmUp: [{name: "Light Walk", detail: "Recovery", duration: 20}], Exercise: [], CoolDown: [] },
@@ -241,7 +232,7 @@
       ];
 
       sections.forEach(s => {
-        if (data[s.key].length > 0) {
+        if (data[s.key] && data[s.key].length > 0) {
           const sectionDiv = document.createElement('div');
           sectionDiv.className = 'category';
           sectionDiv.innerHTML = `<h3>${s.title}</h3>`;
@@ -249,17 +240,17 @@
           data[s.key].forEach(ex => {
             const card = document.createElement('div');
             card.className = 'exercise';
+            const timerId = `t-${ex.name.replace(/\s/g, '')}`;
             card.innerHTML = `
               <div class="exercise-info">
                 <h4>${ex.name}</h4>
                 <p>${ex.detail}</p>
               </div>
               <div class="timer-control">
-                <span class="timer-display" id="t-${ex.name.replace(/\s/g, '')}">${ex.duration}:00</span>
+                <span class="timer-display" id="${timerId}">${ex.duration}:00</span>
                 <button class="timer-btn" onclick="runTimer('${ex.name}', ${ex.duration * 60}, this)">Start</button>
               </div>
             `;
-            // Toggle completed on click of the card info
             card.addEventListener('click', (e) => {
               if(e.target.tagName !== 'BUTTON') card.classList.toggle('completed');
             });
