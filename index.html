@@ -3,483 +3,298 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LobitoWolfX Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
+  <title>Lobito Tracker | Core & Arms</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --font-family: 'Inter', sans-serif;
-      --bg: #E0F7FA;
-      --card-bg: #FFFFFF;
-      --text: #37474F;
-      --accent: #FF7043;
-      --accent-hover: #F4511E;
-      --timer-color: #0288D1;
-      --success-bg: #66BB6A;
-      --radius: 8px;
-      --gap: 16px;
-    }
-
-    * {
-      box-sizing: border-box;
+      --bg: #0f1113;
+      --card-bg: #1a1d21;
+      --text-main: #e0e0e0;
+      --text-dim: #909090;
+      --accent: #ff4d4d; /* Strategic red accent */
+      --accent-muted: #3d1a1a;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --radius: 12px;
     }
 
     body {
       margin: 0;
-      padding: var(--gap);
-      font-family: var(--font-family);
+      padding: 40px 20px;
+      font-family: var(--font-sans);
       background: var(--bg);
-      color: var(--text);
+      color: var(--text-main);
+      line-height: 1.6;
     }
 
     header {
       text-align: center;
-      margin-bottom: var(--gap);
+      margin-bottom: 50px;
     }
 
     header h1 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-style: italic;
       margin: 0;
-      font-weight: 600;
-    }
-
-    header img {
-      width: 80px;
-      margin-top: 8px;
+      letter-spacing: -1px;
     }
 
     .nav {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: var(--gap);
-      margin-bottom: var(--gap);
+      max-width: 600px;
+      margin: 0 auto 30px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
     }
 
     .nav button {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: var(--radius);
-      padding: 8px 12px;
-      font-weight: 600;
+      background: none;
+      border: 1px solid #444;
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 20px;
       cursor: pointer;
-      transition: background 0.2s;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
     }
 
     .nav button:hover {
-      background: var(--accent-hover);
+      background: var(--text-main);
+      color: var(--bg);
     }
 
     #day-label {
-      font-weight: 600;
-    }
-
-    .notification {
-      display: none;
-      text-align: center;
-      background: var(--success-bg);
-      color: #fff;
-      padding: 10px;
-      border-radius: var(--radius);
-      margin-bottom: var(--gap);
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
     }
 
     .exercise-list {
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto;
-      background: var(--card-bg);
-      padding: var(--gap);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .category {
-      margin-bottom: var(--gap);
     }
 
     .category h3 {
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .category-items {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--gap);
-    }
-
-    @media (min-width: 600px) {
-      .category-items {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-top: 40px;
+      border-left: 3px solid var(--accent);
+      padding-left: 15px;
     }
 
     .exercise {
-      background: #FAFAFA;
+      background: var(--card-bg);
+      margin-bottom: 12px;
+      padding: 20px;
       border-radius: var(--radius);
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      transition: opacity 0.2s, background 0.2s;
-      position: relative;
-    }
-
-    .exercise.completed {
-      opacity: 0.6;
-      text-decoration: line-through;
-    }
-
-    .exercise-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .exercise-header input[type='checkbox'] {
-      margin-right: 8px;
-      accent-color: var(--accent);
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-
-    .exercise-header span {
-      flex: 1;
-    }
-
-    .details {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: auto;
+      transition: transform 0.2s;
     }
 
-    .timer {
-      color: var(--timer-color);
-      font-weight: 500;
+    .exercise.completed {
+      opacity: 0.3;
+      filter: grayscale(1);
+    }
+
+    .exercise-info h4 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .exercise-info p {
+      margin: 4px 0 0;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .timer-control {
+      text-align: right;
+    }
+
+    .timer-display {
+      display: block;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
     }
 
     .timer-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: var(--radius);
-      padding: 6px 10px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .timer-btn:hover {
-      background: var(--accent-hover);
-    }
-
-    .total-time,
-    .total-time-day {
-      margin-top: var(--gap);
+      background: var(--accent-muted);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
       font-weight: 600;
+      cursor: pointer;
+    }
+
+    .total-summary {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Notification */
+    #notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      padding: 15px 25px;
+      border-radius: var(--radius);
+      display: none;
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
   </style>
 </head>
-
 <body>
+
   <header>
-    <h1>Lobito SkiEx Tracker</h1>
-    <img src="ExWolf.png" alt="Logo" />
+    <h1>Lobito Training</h1>
+    <p style="font-size: 0.8rem; letter-spacing: 3px; color: var(--text-dim);">CORE • ARMS • STRENGTH</p>
   </header>
 
   <div class="nav">
-    <button id="prev-day">&larr; Prev</button>
+    <button id="prev-day">Back</button>
     <span id="day-label"></span>
-    <button id="next-day">Next &rarr;</button>
+    <button id="next-day">Next</button>
   </div>
 
-  <div id="notification" class="notification"></div>
-  <audio id="notification-sound" src="ding.mp3"></audio>
+  <div id="notification"></div>
 
-  <div class="exercise-list">
-    <div id="exercise-container"></div>
-  </div>
+  <div class="exercise-list" id="exercise-container"></div>
 
   <script>
+    // NEW INTEGRAL DATABASE
+    const masterFullBody = [
+      { name: "Goblet Squats", detail: "Barbell/Dumbbell - 3x12", duration: 3, cat: "Legs" },
+      { name: "Overhead Press", detail: "Barbell (6kg) - 3x10", duration: 3, cat: "Shoulders/Arms" },
+      { name: "Push-ups", detail: "Chest Focus - 3x10", duration: 3, cat: "Upper Body" },
+      { name: "Bicep Curls", detail: "Dumbbells - 3x12", duration: 3, cat: "Shoulders/Arms" },
+      { name: "Hammer Curls", detail: "Dumbbells (Neutral Grip) - 3x10", duration: 3, cat: "Shoulders/Arms" },
+      { name: "Triceps Dips", detail: "Chair/Couch - 3x12", duration: 3, cat: "Shoulders/Arms" },
+      { name: "Plank Shoulder Taps", detail: "Core Stability - 1 min", duration: 1, cat: "Core" },
+      { name: "Deadbugs", detail: "Slow & Controlled - 1 min", duration: 1, cat: "Core" },
+      { name: "Bird Dogs", detail: "30 per side", duration: 1, cat: "Core" }
+    ];
+
+    const warmUp = [
+      { name: "Jumping Jacks", detail: "1 min", duration: 1 },
+      { name: "Arm Circles", detail: "1 min", duration: 1 },
+      { name: "Downward Dog", detail: "Stretch", duration: 1 }
+    ];
+
+    const coolDown = [
+      { name: "Child's Pose", detail: "Relax", duration: 1 },
+      { name: "Cat-Cow Stretch", detail: "Spine Mobility", duration: 1 },
+      { name: "Cobra Stretch", detail: "Abs", duration: 1 }
+    ];
+
+    // AUTO-POPULATE LOGIC
     const exercises = {
-      Monday: {
-        WarmUp: [
-          { name: "Jumping Jacks (1 min)", duration: 1 },
-          { name: "Arm Circles (1 min)", duration: 1 },
-          { name: "Leg Swings (1 min per leg)", duration: 1 },
-          { name: "Downward Dog (1 min)", duration: 1 },
-        ],
-        Exercise: [
-          { name: "Body weight Squats (3x10)", duration: 3 },
-          { name: "Lunges (2x30)", duration: 3 },
-          { name: "Glute Bridges (1 min)", duration: 1 },
-          { name: "Wall Sit (30 seconds)", duration: 0.5 },
-          { name: "Bicep Curls (3x10)", duration: 3 },
-          { name: "Plank (30 seconds)", duration: 0.5 },
-          { name: "Side Plank (30 seconds per side)", duration: 1 },
-          { name: "Single Deadlifts (30 seconds per leg)", duration: 0.5 },
-          { name: "Bird Dogs (30 per side)", duration: 1 },
-          { name: "Push-ups (3x10)", duration: 3 },
-          { name: "Triceps Dips (3x10)", duration: 3 },
-          { name: "Dolphin Pose (1 min)", duration: 1 },
-        ],
-        CoolDown: [
-          { name: "Hamstring stretch (1 min)", duration: 1 },
-          { name: "Hip Flexor stretch (1 min)", duration: 1 },
-          { name: "Quad stretch (1 min)", duration: 1 },
-          { name: "Calf stretch (1 min)", duration: 1 },
-          { name: "Child's Pose (1 min)", duration: 1 },
-          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
-          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
-          { name: "Sphinx Pose (1 min)", duration: 1 },
-        ],
-      },
-      Tuesday: {
-        WarmUp: [
-          { name: "Light Cardio (5 min)", duration: 5 },
-          { name: "Downward Dog (1 min)", duration: 1 },
-        ],
-        Exercise: [],
-        CoolDown: [
-          { name: "Hamstring stretch (1 min)", duration: 1 },
-          { name: "Hip Flexor stretch (1 min)", duration: 1 },
-          { name: "Quad stretch (1 min)", duration: 1 },
-          { name: "Calf stretch (1 min)", duration: 1 },
-          { name: "Child's Pose (1 min)", duration: 1 },
-          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
-          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
-          { name: "Sphinx Pose (1 min)", duration: 1 },
-        ],
-      },
-      Wednesday: {
-        WarmUp: [
-          { name: "Jumping Jacks (1 min)", duration: 1 },
-          { name: "Arm Circles (1 min)", duration: 1 },
-          { name: "Leg Swings (1 min per leg)", duration: 1 },
-          { name: "Downward Dog (1 min)", duration: 1 },
-        ],
-        Exercise: [
-          { name: "Body weight Squats (3x10)", duration: 3 },
-          { name: "Lunges (2x30)", duration: 3 },
-          { name: "Glute Bridges (1 min)", duration: 1 },
-          { name: "Wall Sit (30 seconds)", duration: 0.5 },
-          { name: "Bicep Curls (3x10)", duration: 3 },
-          { name: "Plank (30 seconds)", duration: 0.5 },
-          { name: "Side Plank (30 seconds per side)", duration: 1 },
-          { name: "Single Deadlifts (30 seconds per leg)", duration: 0.5 },
-          { name: "Bird Dogs (30 per side)", duration: 1 },
-          { name: "Dolphin Pose (1 min)", duration: 1 },
-        ],
-        CoolDown: [
-          { name: "Hamstring stretch (1 min)", duration: 1 },
-          { name: "Hip Flexor stretch (1 min)", duration: 1 },
-          { name: "Quad stretch (1 min)", duration: 1 },
-          { name: "Calf stretch (1 min)", duration: 1 },
-          { name: "Child's Pose (1 min)", duration: 1 },
-          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
-          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
-          { name: "Sphinx Pose (1 min)", duration: 1 },
-        ],
-      },
-      Thursday: {
-        WarmUp: [
-          { name: "Jumping Jacks (1 min)", duration: 1 },
-          { name: "Arm Circles (1 min)", duration: 1 },
-          { name: "Leg Swings (1 min per leg)", duration: 1 },
-          { name: "Downward Dog (1 min)", duration: 1 },
-        ],
-        Exercise: [
-          { name: "Jumping Squats (1 min)", duration: 1 },
-          { name: "Lateral Skater Jumps (1 min)", duration: 1 },
-          { name: "Mountain Climbers (1 min)", duration: 1 },
-          { name: "Dolphin Pose (1 min)", duration: 1 },
-        ],
-        CoolDown: [
-          { name: "Hamstring stretch (1 min)", duration: 1 },
-          { name: "Hip Flexor stretch (1 min)", duration: 1 },
-          { name: "Quad stretch (1 min)", duration: 1 },
-          { name: "Calf stretch (1 min)", duration: 1 },
-          { name: "Child's Pose (1 min)", duration: 1 },
-          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
-          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
-          { name: "Sphinx Pose (1 min)", duration: 1 },
-        ],
-      },
-      Friday: {
-        WarmUp: [
-          { name: "Jumping Jacks (1 min)", duration: 1 },
-          { name: "Arm Circles (1 min)", duration: 1 },
-          { name: "Leg Swings (1 min per leg)", duration: 1 },
-          { name: "Downward Dog (1 min)", duration: 1 },
-        ],
-        Exercise: [
-          { name: "Body weight Squats (3x10)", duration: 3 },
-          { name: "Lunges (2x30)", duration: 3 },
-          { name: "Glute Bridges (1 min)", duration: 1 },
-          { name: "Wall Sit (30 seconds)", duration: 0.5 },
-          { name: "Bicep Curls (3x10)", duration: 3 },
-          { name: "Plank (30 seconds)", duration: 0.5 },
-          { name: "Side Plank (30 seconds per side)", duration: 1 },
-          { name: "Single Deadlifts (30 seconds per leg)", duration: 0.5 },
-          { name: "Bird Dogs (30 per side)", duration: 1 },
-          { name: "Push-ups (3x10)", duration: 3 },
-          { name: "Triceps Dips (3x10)", duration: 3 },
-          { name: "Dolphin Pose (1 min)", duration: 1 },
-        ],
-        CoolDown: [
-          { name: "Hamstring stretch (1 min)", duration: 1 },
-          { name: "Hip Flexor stretch (1 min)", duration: 1 },
-          { name: "Quad stretch (1 min)", duration: 1 },
-          { name: "Calf stretch (1 min)", duration: 1 },
-          { name: "Child's Pose (1 min)", duration: 1 },
-          { name: "Cat-Cow Stretch (1 min)", duration: 1 },
-          { name: "Supine Spinal Twist (1 min per side)", duration: 2 },
-          { name: "Sphinx Pose (1 min)", duration: 1 },
-        ],
-      },
+      Monday: { WarmUp: warmUp, Exercise: masterFullBody, CoolDown: coolDown },
+      Tuesday: { WarmUp: [{name: "Light Walk", detail: "Recovery", duration: 20}], Exercise: [], CoolDown: [] },
+      Wednesday: { WarmUp: warmUp, Exercise: masterFullBody, CoolDown: coolDown },
+      Thursday: { WarmUp: [{name: "Yoga/Stretch", detail: "Recovery", duration: 15}], Exercise: [], CoolDown: [] },
+      Friday: { WarmUp: warmUp, Exercise: masterFullBody, CoolDown: coolDown },
       Saturday: { WarmUp: [], Exercise: [], CoolDown: [] },
-      Sunday:   { WarmUp: [], Exercise: [], CoolDown: [] }
+      Sunday: { WarmUp: [], Exercise: [], CoolDown: [] }
     };
 
-    const days = [
-      'Sunday','Monday','Tuesday','Wednesday',
-      'Thursday','Friday','Saturday'
-    ];
-    let idx = days.indexOf(
-      new Date().toLocaleDateString('en-US', { weekday: 'long' })
-    );
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    let idx = new Date().getDay();
 
-    const prevBtn = document.getElementById('prev-day');
-    const nextBtn = document.getElementById('next-day');
-    const dayLabel = document.getElementById('day-label');
     const container = document.getElementById('exercise-container');
-    const notification = document.getElementById('notification');
-    const ding = document.getElementById('notification-sound');
+    const dayLabel = document.getElementById('day-label');
 
-    prevBtn.addEventListener('click', () => {
-      idx = (idx + 6) % 7;
-      renderForDay(days[idx]);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      idx = (idx + 1) % 7;
-      renderForDay(days[idx]);
-    });
-
-    function renderForDay(day) {
-      dayLabel.textContent = `Routine for ${day}`;
+    function render(dayName) {
+      dayLabel.textContent = dayName;
       container.innerHTML = '';
-      let totalTime = 0;
+      const data = exercises[dayName];
 
-      const data = exercises[day] || {
-        WarmUp: [{ name: "No warm-up.", duration: 0 }],
-        Exercise: [{ name: "No exercise.", duration: 0 }],
-        CoolDown: [{ name: "No cool-down.", duration: 0 }]
-      };
+      const sections = [
+        { title: "The Prep", key: "WarmUp" },
+        { title: "The Work", key: "Exercise" },
+        { title: "The Recovery", key: "CoolDown" }
+      ];
 
-      [['WarmUp','Warm-Up'],['Exercise','Exercise'],['CoolDown','Cool-Down']]
-        .forEach(([key,title]) => {
-          totalTime += renderCategory(title, data[key]);
-        });
-
-      const totalDiv = document.createElement('div');
-      totalDiv.className = 'total-time-day';
-      totalDiv.textContent = `Total time today: ${totalTime} minutes`;
-      container.appendChild(totalDiv);
-    }
-
-    function renderCategory(title, list) {
-      let sectionTime = 0;
-      const cat = document.createElement('div');
-      cat.className = 'category';
-
-      const h3 = document.createElement('h3');
-      h3.textContent = title;
-      cat.appendChild(h3);
-
-      const grid = document.createElement('div');
-      grid.className = 'category-items';
-
-      list.forEach(item => {
-        sectionTime += item.duration;
-
-        const card = document.createElement('div');
-        card.className = 'exercise';
-
-        // header with checkbox + name
-        const header = document.createElement('div');
-        header.className = 'exercise-header';
-        const chk = document.createElement('input');
-        chk.type = 'checkbox';
-        chk.addEventListener('change', () => {
-          card.classList.toggle('completed', chk.checked);
-        });
-        const nameSpan = document.createElement('span');
-        nameSpan.textContent = item.name;
-        header.append(chk, nameSpan);
-
-        // details with timer + button
-        const details = document.createElement('div');
-        details.className = 'details';
-        const timerSpan = document.createElement('span');
-        timerSpan.className = 'timer';
-        timerSpan.textContent = `${item.duration}:00`;
-        const btn = document.createElement('button');
-        btn.className = 'timer-btn';
-        btn.textContent = 'Start Timer';
-        btn.addEventListener('click', () => {
-          startTimer(item.name, timerSpan, item.duration * 60, btn);
-        });
-
-        details.append(timerSpan, btn);
-        card.append(header, details);
-        grid.appendChild(card);
-      });
-
-      cat.appendChild(grid);
-
-      const totalSec = document.createElement('div');
-      totalSec.className = 'total-time';
-      totalSec.textContent = `Total time for ${title}: ${sectionTime} minutes`;
-      cat.appendChild(totalSec);
-
-      container.appendChild(cat);
-      return sectionTime;
-    }
-
-    function startTimer(name, displayEl, duration, button) {
-      let time = duration;
-      button.disabled = true;
-      const interval = setInterval(() => {
-        const m = Math.floor(time / 60);
-        const s = time % 60;
-        displayEl.textContent = `${m}:${s.toString().padStart(2,'0')}`;
-        time--;
-        if (time < 0) {
-          clearInterval(interval);
-          displayEl.textContent = 'Done!';
-          button.disabled = false;
-          showNotification(`${name} completed!`);
+      sections.forEach(s => {
+        if (data[s.key].length > 0) {
+          const sectionDiv = document.createElement('div');
+          sectionDiv.className = 'category';
+          sectionDiv.innerHTML = `<h3>${s.title}</h3>`;
+          
+          data[s.key].forEach(ex => {
+            const card = document.createElement('div');
+            card.className = 'exercise';
+            card.innerHTML = `
+              <div class="exercise-info">
+                <h4>${ex.name}</h4>
+                <p>${ex.detail}</p>
+              </div>
+              <div class="timer-control">
+                <span class="timer-display" id="t-${ex.name.replace(/\s/g, '')}">${ex.duration}:00</span>
+                <button class="timer-btn" onclick="runTimer('${ex.name}', ${ex.duration * 60}, this)">Start</button>
+              </div>
+            `;
+            // Toggle completed on click of the card info
+            card.addEventListener('click', (e) => {
+              if(e.target.tagName !== 'BUTTON') card.classList.toggle('completed');
+            });
+            sectionDiv.appendChild(card);
+          });
+          container.appendChild(sectionDiv);
         }
+      });
+    }
+
+    window.runTimer = function(name, seconds, btn) {
+      btn.disabled = true;
+      const display = document.getElementById(`t-${name.replace(/\s/g, '')}`);
+      let timeLeft = seconds;
+
+      const interval = setInterval(() => {
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        display.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          display.textContent = "Done";
+          btn.disabled = false;
+          showNotify(name + " Finished!");
+        }
+        timeLeft--;
       }, 1000);
     }
 
-    function showNotification(msg) {
-      notification.textContent = msg;
-      notification.style.display = 'block';
-      ding.play();
-      setTimeout(() => {
-        notification.style.display = 'none';
-      }, 3000);
+    function showNotify(msg) {
+      const n = document.getElementById('notification');
+      n.textContent = msg;
+      n.style.display = 'block';
+      setTimeout(() => n.style.display = 'none', 3000);
     }
 
-    // initial render
-    renderForDay(days[idx]);
+    document.getElementById('prev-day').onclick = () => { idx = (idx + 6) % 7; render(days[idx]); };
+    document.getElementById('next-day').onclick = () => { idx = (idx + 1) % 7; render(days[idx]); };
+
+    render(days[idx]);
   </script>
 </body>
 </html>
