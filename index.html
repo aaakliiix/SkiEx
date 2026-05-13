@@ -70,6 +70,15 @@
       transition: all 0.3s;
     }
 
+    .nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
     .nav button:hover {
       background: var(--text-main);
       color: var(--bg);
@@ -171,9 +180,8 @@
     <button id="prev-day">Back</button>
     <span id="day-label"></span>
     <button id="next-day">Next</button>
+    <a href="gym.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.7rem;">Modo Gym Activado</a>
   </div>
-
-  <a href="gym.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.7rem;">Modo Gym Activado</a>
   
   <div id="notification"></div>
 
