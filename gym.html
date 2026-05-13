@@ -150,14 +150,22 @@
   <script>
     // GYM SPECIFIC DATABASE
     const masterGymBody = [
-      { name: "Leg Press", detail: "Machine - 3x10 (Controlled Reps)", duration: 3 },
-      { name: "Seated DB Shoulder Press", detail: "Dumbbells - 3x10", duration: 3 },
-      { name: "Cable Lateral Raises", detail: "Constant Tension - 3x12", duration: 3 },
+      // --- THE BIG LIFTS ---
+      { name: "Leg Press", detail: "Machine - 3x10 (Slow on the way down)", duration: 3 },
+      { name: "Romanian Deadlifts", detail: "Dumbbells or Barbell - 3x12", duration: 3 },
       { name: "Lat Pulldowns", detail: "Wide Grip - 3x10", duration: 3 },
-      { name: "Cable Tricep Pushdown", detail: "Rope Attachment - 3x12", duration: 3 },
-      { name: "Barbell Bicep Curls", detail: "Straight Bar - 3x10", duration: 3 },
-      { name: "Hanging Leg Raises", detail: "The Abs Secret - 3xMax", duration: 2 },
-      { name: "Cable Crunches", detail: "Kneeling on floor - 3x15", duration: 3 }
+      
+      // --- THE SCULPTING (SHOULDERS/ARMS) ---
+      { name: "Seated DB Press", detail: "Dumbbells - 3x10", duration: 3 },
+      { name: "Cable Lateral Raises", detail: "Single Arm - 3x12 per side", duration: 3 },
+      { name: "Face Pulls", detail: "Rope to forehead - 3x15", duration: 2 },
+      { name: "Cable Tricep Pushdowns", detail: "Rope - 3x12", duration: 3 },
+      { name: "Hammer Curls", detail: "Dumbbells - 3x12", duration: 3 },
+      
+      // --- THE ABS (LEVEL 2) ---
+      { name: "Hanging Leg Raises", detail: "Pull-up bar - 3xMax", duration: 2 },
+      { name: "Cable Crunches", detail: "Kneeling - Heavy - 3x15", duration: 3 },
+      { name: "Weighted Plank", detail: "Plate on back - 1 min", duration: 1 }
     ];
 
     function renderGym() {
