@@ -10,7 +10,7 @@
   <style>
     /* Consistent Branding */
     :root {
-      --bg: #0b0d0f; /* Slightly darker for the gym */
+      --bg: #0b0d0f; /* Dark theme */
       --card-bg: #16191d;
       --text-main: #e0e0e0;
       --text-dim: #909090;
@@ -82,14 +82,12 @@
       padding-left: 15px;
     }
 
+    /* Exercise Card Layout */
     .exercise {
       background: var(--card-bg);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       padding: 20px;
       border-radius: var(--radius);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       border: 1px solid transparent;
       transition: all 0.3s;
     }
@@ -98,15 +96,44 @@
       border-color: var(--accent-muted);
     }
 
+    .exercise-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .exercise-info h4 {
       margin: 0;
       font-weight: 600;
+      font-size: 1.1rem;
     }
 
     .exercise-info p {
       margin: 4px 0 0;
       font-size: 0.85rem;
       color: var(--text-dim);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tip-btn {
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid #333;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .tip-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .timer-btn {
@@ -117,6 +144,23 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
+    }
+
+    /* Tooltip / Guidance Drawer Style */
+    .tooltip-box {
+      display: none;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed #2a2e35;
+      font-size: 0.85rem;
+      color: #b0b8c0;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 12px 15px;
+      border-radius: 8px;
+    }
+
+    .tooltip-box strong {
+      color: var(--accent);
     }
 
     #notification {
@@ -142,34 +186,98 @@
   <div class="nav">
     <a href="index.html">← Back to Home Base</a>
     <span id="day-label">Monday</span>
-    <span style="width: 80px;"></span> </div>
+    <span style="width: 80px;"></span>
+  </div>
 
   <div id="notification"></div>
   <div class="exercise-list" id="gym-container" style="max-width: 700px; margin: 0 auto;"></div>
 
   <script>
-    // GYM SPECIFIC DATABASE
+    // UPGRADED GYM SPECIFIC DATABASE WITH TOOLTIPS
     const masterGymBody = [
-      // --- THE BIG LIFTS ---
-      { name: "Leg Press", detail: "Machine - 3x10 (Slow on the way down)", duration: 3 },
-      { name: "Romanian Deadlifts", detail: "Dumbbells or Barbell - 3x12", duration: 3 },
-      { name: "Lat Pulldowns", detail: "Wide Grip - 3x10", duration: 3 },
+      // --- CARDIO WARM-UP ---
+      { 
+        name: "Stairmaster or Incline Treadmill", 
+        detail: "Warm-up - 10 Minutes", 
+        duration: 10,
+        tip: "Keep a steady pace. If using treadmill, set incline to 8-10% at a slow walk (2.5 - 3 mph). Don't hold onto the handles tightly!"
+      },
+
+      // --- FULL BODY FOUNDATIONS (MACHINES) ---
+      { 
+        name: "Leg Press", 
+        detail: "Machine - 3x10 (Slow on the way down)", 
+        duration: 3,
+        tip: "Place feet shoulder-width, slightly high on the board (targets glutes/hamstrings). Lower weight slowly until knees hit 90°. NEVER lock your knees straight at the top!"
+      },
+      { 
+        name: "Lat Pulldowns", 
+        detail: "Machine Wide Grip - 3x10", 
+        duration: 3,
+        tip: "Adjust thigh pads tightly over your legs. Lean back slightly, pull the bar straight to your upper chest (not behind your neck), squeezing shoulder blades together."
+      },
+      { 
+        name: "Machine Chest Press", 
+        detail: "Machine - 3x10 (Full range)", 
+        duration: 3,
+        tip: "Set seat height so handles align with mid-chest. Press forward without locking elbows out completely. Keep shoulders pressed back against the seat."
+      },
       
-      // --- THE SCULPTING (SHOULDERS/ARMS) ---
-      { name: "Seated DB Press", detail: "Dumbbells - 3x10", duration: 3 },
-      { name: "Cable Lateral Raises", detail: "Single Arm - 3x12 per side", duration: 3 },
-      { name: "Face Pulls", detail: "Rope to forehead - 3x15", duration: 2 },
-      { name: "Cable Tricep Pushdowns", detail: "Rope - 3x12", duration: 3 },
-      { name: "Hammer Curls", detail: "Dumbbells - 3x12", duration: 3 },
+      // --- THE SCULPTING (ARMS/SHOULDERS - CABLE TOWER) ---
+      { 
+        name: "Cable Lateral Raises", 
+        detail: "Single Arm - 3x12 per side", 
+        duration: 3,
+        tip: "Set cable pulley to lowest height. Stand side-facing to machine, hold handle with outside hand, raise arm out to the side until level with shoulder. Control the way down."
+      },
+      { 
+        name: "Cable Tricep Pushdowns", 
+        detail: "Rope Attachment - 3x12", 
+        duration: 3,
+        tip: "Set cable pulley to top height. Pin elbows to your ribs (don't let them swing). Push rope down and pull the ends apart at the bottom for peak tricep contraction."
+      },
+      { 
+        name: "Cable Bicep Curls", 
+        detail: "Straight Bar or Rope - 3x12", 
+        duration: 3,
+        tip: "Set cable pulley to lowest height. Stand tall, keep elbows tucked to sides, curl weight up towards chest while keeping upper body still (no swinging back)."
+      },
       
-      // --- THE ABS (LEVEL 2) ---
-      { name: "Hanging Leg Raises", detail: "Pull-up bar - 3xMax", duration: 2 },
-      { name: "Cable Crunches", detail: "Kneeling - Heavy - 3x15", duration: 3 },
-      { name: "Weighted Plank", detail: "Plate on back - 1 min", duration: 1 }
+      // --- THE ABS (HEAVY GYM CORE) ---
+      { 
+        name: "Hanging Leg Raises", 
+        detail: "Captain's Chair or Pull-Up Bar - 3xMax", 
+        duration: 2,
+        tip: "Rest forearms on pads (Captain's Chair). Lift knees up toward chest in a controlled motion without swinging momentum. Lower legs back down slowly."
+      },
+      { 
+        name: "Cable Crunches", 
+        detail: "Kneeling Rope - Heavy - 3x15", 
+        duration: 3,
+        tip: "Kneel facing cable tower with rope held by your ears. Crunch down toward your knees using your abs (like curling into a ball), not pulling down with your arms."
+      },
+
+      // --- CARDIO FINISHER ---
+      { 
+        name: "Rowing Machine or Elliptical", 
+        detail: "Intervals - 15 Minutes", 
+        duration: 15,
+        tip: "On rower: Push with legs first, lean back slightly, then pull with arms to chest. Finish strong with 30-sec sprint / 30-sec easy pace intervals!"
+      }
     ];
+
+    function toggleTip(index) {
+      const tipBox = document.getElementById(`tip-${index}`);
+      if (tipBox.style.display === 'block') {
+        tipBox.style.display = 'none';
+      } else {
+        tipBox.style.display = 'block';
+      }
+    }
 
     function renderGym() {
       const container = document.getElementById('gym-container');
+      container.innerHTML = '';
       
       const sections = [
         { title: "The Work (Gym Edition)", list: masterGymBody }
@@ -180,21 +288,34 @@
         sectionDiv.className = 'category';
         sectionDiv.innerHTML = `<h3>${s.title}</h3>`;
         
-        s.list.forEach(ex => {
+        s.list.forEach((ex, idx) => {
           const card = document.createElement('div');
           card.className = 'exercise';
           card.innerHTML = `
-            <div class="exercise-info">
-              <h4>${ex.name}</h4>
-              <p>${ex.detail}</p>
+            <div class="exercise-main">
+              <div class="exercise-info">
+                <h4>${ex.name}</h4>
+                <p>${ex.detail}</p>
+              </div>
+              <div class="actions">
+                <button class="tip-btn" onclick="toggleTip(${idx})">💡 Form Tip</button>
+                <button class="timer-btn">Start Sets</button>
+              </div>
             </div>
-            <button class="timer-btn">Start Sets</button>
+            <div class="tooltip-box" id="tip-${idx}">
+              <strong>Machine Setup & Form:</strong> ${ex.tip}
+            </div>
           `;
           sectionDiv.appendChild(card);
         });
         container.appendChild(sectionDiv);
       });
     }
+
+    renderGym();
+  </script>
+</body>
+</html>
 
     renderGym();
   </script>
