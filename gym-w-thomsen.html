@@ -299,240 +299,238 @@
 
   <script>
     const routineData = {
-      lunes: {
-        title: "Lunes - Glúteo / Pecho & Core",
-        focus: "Módulo central de cadera, pierna & core",
-        exercises: [
-          {
-            name: "1. Hip Thrust Machine",
-            type: "shared",
-            badge: "Misma Estación",
-            her: "4 x 8 (50-70 kg) — Glúteo pesado. Últimas 2 reps al límite.",
-            your: "3 x 8-10 — Trabajo pesado de glúteo e isquios.",
-            duo: "Comparten estación. Intercalan series y ajustan discos en las pausas de descanso.",
-            alt: "Glute Drive Machine o Hip Thrust con barra olímpica"
-          },
-          {
-            name: "2. RDL Machine (Peso Muerto Rumano)",
-            type: "shared",
-            badge: "Estación Compartida",
-            her: "4 x 10 (35-45 kg) — Bajada de 3 seg enfocada en tracción de glúteo.",
-            your: "3 x 8-10 — Isquios y cadena posterior.",
-            duo: "Si usan la misma máquina: Thomsen mantiene cadera alta; Yopi baja con mayor flexión de rodilla.",
-            alt: "RDL con barra olímpica o mancuernas pesadas"
-          },
-          {
-            name: "3. Step-Up Machine (o Cajas)",
-            type: "shared",
-            badge: "Estación Compartida",
-            her: "3 x 10 por pierna — Empujar firme con el talón.",
-            your: "3 x 10 por pierna — Enfocado en cuádriceps y estabilidad.",
-            duo: "Alternan en la máquina o usan dos bancos contiguos con mancuernas.",
-            alt: "Prensa a 1 pierna o Desplantes estáticos"
-          },
-          {
-            name: "4. Cable Kickbacks (Thomsen) vs Cable Crunches (Yopi)",
-            type: "split",
-            badge: "Módulo Polea Doble",
-            her: "3 x 15 por pierna — Patada de glúteo en polea baja con grillete.",
-            your: "3 x 15 Cable Crunches (Abs) + 3 x 12 Tríceps Cuerda.",
-            duo: "Torre de poleas dobles: Thomsen usa la polea inferior y Yopi la superior.",
-            alt: "Thomsen: Patada en multipower | Yopi: Ab Wheel en tapete"
-          },
-          {
-            name: "5. Finisher: Abducción + Plancha Core",
-            type: "shared",
-            badge: "Finisher Core/Glúteo",
-            her: "2 x 30 — Abducción con banda de resistencia.",
-            your: "2 x 45 seg — Plancha isométrica / Hollow hold.",
-            duo: "Dos tapetes juntos en la zona de estiramiento para cerrar.",
-            alt: "Monster walk con banda lateral"
-          }
-        ]
+lunes: {
+    title: "Lunes - Glúteo / Pecho & Core",
+    focus: "Módulo central de cadera, pierna & core",
+    exercises: [
+      {
+        name: "1. Hip Thrust Machine",
+        type: "shared",
+        badge: "Misma Estación",
+        her: "4 x 8 (50-70 kg) — Glúteo pesado. Últimas 2 reps al límite.",
+        your: "3 x 8-10 — Trabajo pesado de glúteo e isquios.",
+        duo: "Comparten estación. Intercalan series y ajustan discos en las pausas de descanso.",
+        alt: "Glute Drive Machine o Hip Thrust con barra olímpica"
       },
-
-      miercoles: {
-        title: "Miércoles - Upper Body & Torso Balanceado",
-        focus: "Espalda, Hombro, Pecho & Brazos (Ambos)",
-        exercises: [
-          {
-            name: "1. Lat Pulldown (Jalón al Pecho)",
-            type: "shared",
-            badge: "Misma Máquina",
-            her: "4 x 12 (25-35 kg) — Barra horizontal dirigida al pecho alto.",
-            your: "4 x 8-10 — Carga pesada con torso erguido enfocando dorsales.",
-            duo: "Estación 100% compartida. Solo cambian la clavija de peso entre series.",
-            alt: "Jalón en polea con agarre neutro o Dominadas asistidas"
-          },
-          {
-            name: "2. Remo Pecho Apoyado con Mancuernas",
-            type: "shared",
-            badge: "Bancos Contiguos",
-            her: "4 x 10 (8-10 kg por mancuerna).",
-            your: "4 x 10 — Remo pesado enfocando densidad de espalda.",
-            duo: "Colocan dos bancos inclinados lado a lado en el área de peso libre.",
-            alt: "Remo en polea baja con agarre abierto o T-Bar Row"
-          },
-          {
-            name: "3. Press de Hombro con Mancuernas",
-            type: "shared",
-            badge: "Mismo Banco",
-            her: "3 x 12 (6-8 kg por mancuerna).",
-            your: "3 x 10 — Press militar pesado de hombro.",
-            duo: "Comparten el mismo banco o usan dos bancos contiguos para mantener el ritmo.",
-            alt: "Press de hombro sentado en máquina"
-          },
-          {
-            name: "4. Elevaciones Laterales + Cable Crunches",
-            type: "shared",
-            badge: "Hombro & Abs",
-            her: "3 x 15 — Elevaciones laterales estrictas (3-5 kg).",
-            your: "3 x 12 Lateral Raises + 3 x 15 Cable Crunches (Superserie Abs).",
-            duo: "Ejecutan el trabajo de hombro simultáneamente frente al espejo; tú agregas la serie de abdomen en la polea.",
-            alt: "Elevaciones laterales en polea baja"
-          },
-          {
-            name: "5. Superserie de Brazos: Bíceps + Tríceps",
-            type: "shared",
-            badge: "Superserie Rotativa",
-            her: "3 x 12 Curl Bíceps + 3 x 15 Tríceps Cuerda en Polea.",
-            your: "3 x 10 Curl Bíceps + 3 x 12 Tríceps Cuerda.",
-            duo: "Mientras uno realiza el Curl de Bíceps con mancuernas, el otro usa la polea para Tríceps Cuerda y luego intercambian.",
-            alt: "Tríceps: Copita con mancuerna sobre cabeza"
-          }
-        ]
+      {
+        name: "2. RDL Machine (Peso Muerto Rumano)",
+        type: "shared",
+        badge: "Estación Compartida",
+        her: "4 x 10 (35-45 kg) — Bajada de 3 seg enfocada en tracción de glúteo.",
+        your: "3 x 8-10 — Isquios y cadena posterior.",
+        duo: "Si usan la misma máquina: Thomsen mantiene cadera alta; Yopi baja con mayor flexión de rodilla.",
+        alt: "RDL con barra olímpica o mancuernas pesadas"
       },
-
-jueves: {
-        title: "Jueves - Hipertrofia Glúteo / Pierna, Hombro & Abs",
-        focus: "Thomsen: Volumen Glúteo | Yopi: Cuádriceps, Pierna, Hombro & Abs",
-        exercises: [
-          {
-            name: "1. Standing Hip Thrust Machine",
-            type: "shared",
-            badge: "Misma Estación",
-            her: "4 x 12 (40-55 kg) — Hipertrofia de glúteo.",
-            your: "3 x 10-12 — Trabajo pesado de glúteo e isquios.",
-            duo: "Comparten máquina. Intercalan series y ajustan la clavija/peso durante el descanso.",
-            alt: "Hip Thrust con barra o Glute Drive Machine"
-          },
-          {
-            name: "2. Lunge Machine / Desplantes (Cuádriceps & Leg Drive)",
-            type: "shared",
-            badge: "Estación Compartida",
-            her: "3 x 12 por pierna — Enfoque glúteo e isquios.",
-            your: "3 x 10 por pierna — Mancuernas pesadas enfocado en cuádriceps y estabilidad.",
-            duo: "Mismo pasillo de peso libre: hacen desplantes caminando o alternan la máquina.",
-            alt: "Desplantes estáticos en multipower o Prensa a 1 pierna"
-          },
-          {
-            name: "3. Single Leg RDL (Thomsen) vs Face Pulls (Yopi)",
-            type: "split",
-            badge: "Estación Combinada",
-            her: "3 x 12 por pierna (10-12 kg) — Trabajo unilateral y glúteo medio.",
-            your: "3 x 15 — Face Pulls en Polea (Hombro posterior y postura).",
-            duo: "Thomsen trabaja equilibrio de pie al lado mientras Yopi usa la polea para hombro posterior.",
-            alt: "Thomsen: RDL en polea baja | Yopi: Pájaros con mancuernas"
-          },
-          {
-            name: "4. Standing Abductor (Thomsen) vs Hanging Leg Raises (Yopi)",
-            type: "split",
-            badge: "Estaciones Contiguas",
-            her: "4 x 20 — Última serie al fallo en máquina de abducción.",
-            your: "3 x 15 — Elevaciones de piernas colgado en Silla Romana (Abs inferior).",
-            duo: "Estaciones contiguas en el gimnasio; se cronometran los descansos mutuamente.",
-            alt: "Thomsen: Abducción con banda | Yopi: Crunches declinados"
-          },
-          {
-            name: "5. Frog Pumps (Thomsen) vs Russian Twists (Yopi)",
-            type: "shared",
-            badge: "Finisher en Tapete",
-            her: "2 x 35 — Frog Pumps con peso corporal.",
-            your: "2 x 20 — Russian Twists con disco de 10 kg.",
-            duo: "Colocan dos tapetes juntos en el área de abdomen y completan el cierre simultáneamente.",
-            alt: "Crunches tradicionales con disco"
-          }
-        ]
+      {
+        name: "3. Step-Up Machine (o Cajas)",
+        type: "shared",
+        badge: "Estación Compartida",
+        her: "3 x 10 por pierna — Empujar firme con el talón.",
+        your: "3 x 10 por pierna — Enfocado en cuádriceps y estabilidad.",
+        duo: "Alternan en la máquina o usan dos bancos contiguos con mancuernas.",
+        alt: "Prensa a 1 pierna o Desplantes estáticos"
       },
-
-      viernes: {
-        title: "Viernes - Full Body, Core & Cardio Finisher",
-        focus: "Circuito y Acondicionamiento Sincronizado",
-        exercises: [
-          {
-            name: "1. Caminadora Sincronizada",
-            type: "shared",
-            badge: "Cardio 20 Minutos",
-            her: "Opción A: Zona 2 (Inclinación 8-12%, 5.5-6.5 km/h) O Opción B: Intervalos 1x1.",
-            your: "Coordinar misma opción e intensidad de caminadora.",
-            duo: "Toman dos caminadoras contiguas para coordinar el ritmo y tiempo.",
-            alt: "Elíptica o Escaladora"
-          },
-          {
-            name: "Circuito Full Body (3 Vueltas - 90 seg descanso)",
-            type: "shared",
-            badge: "Circuito de 6 Estaciones",
-            her: "Paso continuo por estaciones (12-15 reps por ejercicio).",
-            your: "Mismas estaciones ajustando carga e intención biomecánica.",
-            duo: "Avanzan juntos estación por estación ejecutando las repeticiones uno tras otro.",
-            alt: "Si una máquina está ocupada, usen las variantes indicadas abajo"
-          },
-          {
-            name: "• Leg Press (Variación de Pies)",
-            type: "shared",
-            badge: "Ajuste Biomecánico",
-            her: "15 reps (80-100 kg) — Pies arriba y separados (Enfoque Glúteo).",
-            your: "12 reps pesadas — Pies al centro y abajo (Enfoque Cuádriceps).",
-            duo: "Misma máquina; solo cambian la postura de los pies en la plataforma.",
-            alt: "Sentadilla Goblet con Kettlebell"
-          },
-          {
-            name: "• Chest Press Machine",
-            type: "shared",
-            badge: "Empuje Pecho",
-            her: "12 reps (20-30 kg).",
-            your: "10-12 reps pesadas (Hipertrofia de pecho).",
-            duo: "Ajuste rápido de clavija de peso entre series.",
-            alt: "Push-ups / Lagartijas en tapete"
-          },
-          {
-            name: "• Remo Agarre V en Polea",
-            type: "shared",
-            badge: "Tracción Espalda",
-            her: "12 reps.",
-            your: "10-12 reps (Densidad de espalda).",
-            duo: "Misma máquina de remo sentado en polea.",
-            alt: "Remo con mancuernas a dos manos"
-          },
-          {
-            name: "• Cable Wood Chop (Core & Oblicuos)",
-            type: "shared",
-            badge: "Abs Rotacional",
-            her: "12 reps por lado (10-15 kg).",
-            your: "12 reps por lado (Peso moderado/pesado para core).",
-            duo: "Misma torre de polea a altura media.",
-            alt: "Russian Twists con disco"
-          },
-          {
-            name: "• Kettlebell Swing",
-            type: "shared",
-            badge: "Cadena Posterior",
-            her: "15 reps (12 kg).",
-            your: "15 reps (16-20 kg).",
-            duo: "Toman dos Kettlebells del rack y ejecutan el movimiento simultáneamente.",
-            alt: "Dumbbell Snatch"
-          },
-          {
-            name: "• Mountain Climbers",
-            type: "shared",
-            badge: "Cierre Core (30 seg)",
-            her: "30 segundos continuos.",
-            your: "30 segundos continuos.",
-            duo: "Ejecución simultánea sobre tapete para finalizar la vuelta.",
-            alt: "Plancha dinámica"
-          }
-        ]
+      {
+        name: "4. Cable Kickbacks (Thomsen) vs Cable Crunches (Yopi)",
+        type: "split",
+        badge: "Módulo Polea Doble",
+        her: "3 x 15 por pierna — Patada de glúteo en polea baja con grillete.",
+        your: "3 x 15 Cable Crunches (Abs) + 3 x 12 Tríceps Cuerda.",
+        duo: "Torre de poleas dobles: Thomsen usa la polea inferior y Yopi la superior.",
+        alt: "Thomsen: Patada en multipower | Yopi: Ab Wheel en tapete"
       },
+      {
+        name: "5. Finisher: Abducción + Plancha Core",
+        type: "shared",
+        badge: "Finisher Core/Glúteo",
+        her: "2 x 30 — Abducción con banda de resistencia.",
+        your: "2 x 45 seg — Plancha isométrica / Hollow hold.",
+        duo: "Dos tapetes juntos en la zona de estiramiento para cerrar.",
+        alt: "Monster walk con banda lateral"
+      }
+    ]
+  },
+  miercoles: {
+    title: "Miércoles - Upper Body & Core Sincronizado",
+    focus: "Espalda, Hombro, Pecho & Core",
+    exercises: [
+      {
+        name: "1. Jalón al Pecho Agarre Abierto",
+        type: "shared",
+        badge: "Misma Estación",
+        her: "4 x 10-12 (25-35 kg) — Tracción vertical y dorsales.",
+        your: "4 x 10-12 — Trabajo pesado de amplitud de espalda.",
+        duo: "Misma polea alta. Cambian la clavija de peso rápidamente entre series.",
+        alt: "Dominadas asistidas o Remo vertical"
+      },
+      {
+        name: "2. Press Militar con Mancuernas",
+        type: "shared",
+        badge: "Bancos Contiguos",
+        her: "3 x 12 (8-12 kg) — Deltoides e hipertrofia de hombro.",
+        your: "3 x 10 — Hombro pesado y estabilidad.",
+        duo: "Dos bancos contiguos en el área de mancuernas.",
+        alt: "Press en máquina de hombro"
+      },
+      {
+        name: "3. Remo Gironda Seated Cable Row",
+        type: "shared",
+        badge: "Misma Estación",
+        her: "3 x 12 (25-35 kg) — Densidad de espalda media.",
+        your: "3 x 10-12 — Espalda media y trapecio.",
+        duo: "Alternan en la máquina de remo sentado.",
+        alt: "Remo con barra T o Remo con mancuerna a una mano"
+      },
+      {
+        name: "4. Elevaciones Laterales (Thomsen) vs Biceps/Triceps (Yopi)",
+        type: "split",
+        badge: "Módulo Peso Libre",
+        her: "3 x 15 (4-6 kg) — Aislamiento de deltoides lateral.",
+        your: "3 x 12 Curls de Bíceps + 3 x 12 Copas Tríceps.",
+        duo: "Frente al espejo del área de mancuernas.",
+        alt: "Elevaciones en polea baja"
+      },
+      {
+        name: "5. Finisher: Elevación de Piernas & Plancha",
+        type: "shared",
+        badge: "Finisher Core",
+        her: "3 x 15 — Elevación de piernas en tapete o banco.",
+        your: "3 x 15 — Leg raises pesados / Crunches.",
+        duo: "Tapetes juntos para completar el bloque final.",
+        alt: "Plancha con toques de hombro"
+      }
+    ]
+  },
+  jueves: {
+    title: "Jueves - Hipertrofia Glúteo / Pierna, Hombro & Abs",
+    focus: "Thomsen: Volumen Glúteo | Yopi: Cuádriceps, Pierna, Hombro & Abs",
+    exercises: [
+      {
+        name: "1. Standing Hip Thrust Machine",
+        type: "shared",
+        badge: "Misma Estación",
+        her: "4 x 12 (40-55 kg) — Hipertrofia de glúteo.",
+        your: "3 x 10-12 — Trabajo pesado de glúteo e isquios.",
+        duo: "Comparten máquina. Intercalan series y ajustan la clavija/peso durante el descanso.",
+        alt: "Hip Thrust con barra o Glute Drive Machine"
+      },
+      {
+        name: "2. Lunge Machine / Desplantes (Cuádriceps & Leg Drive)",
+        type: "shared",
+        badge: "Estación Compartida",
+        her: "3 x 12 por pierna — Enfoque glúteo e isquios.",
+        your: "3 x 10 por pierna — Mancuernas pesadas enfocado en cuádriceps y estabilidad.",
+        duo: "Mismo pasillo de peso libre: hacen desplantes caminando o alternan la máquina.",
+        alt: "Desplantes estáticos en multipower o Prensa a 1 pierna"
+      },
+      {
+        name: "3. Single Leg RDL (Thomsen) vs Face Pulls (Yopi)",
+        type: "split",
+        badge: "Estación Combinada",
+        her: "3 x 12 por pierna (10-12 kg) — Trabajo unilateral y glúteo medio.",
+        your: "3 x 15 — Face Pulls en Polea (Hombro posterior y postura).",
+        duo: "Thomsen trabaja equilibrio de pie al lado mientras Yopi usa la polea para hombro posterior.",
+        alt: "Thomsen: RDL en polea baja | Yopi: Pájaros con mancuernas"
+      },
+      {
+        name: "4. Standing Abductor (Thomsen) vs Hanging Leg Raises (Yopi)",
+        type: "split",
+        badge: "Estaciones Contiguas",
+        her: "4 x 20 — Última serie al fallo en máquina de abducción.",
+        your: "3 x 15 — Elevaciones de piernas colgado en Silla Romana (Abs inferior).",
+        duo: "Estaciones contiguas en el gimnasio; se cronometran los descansos mutuamente.",
+        alt: "Thomsen: Abducción con banda | Yopi: Crunches declinados"
+      },
+      {
+        name: "5. Frog Pumps (Thomsen) vs Russian Twists (Yopi)",
+        type: "shared",
+        badge: "Finisher en Tapete",
+        her: "2 x 35 — Frog Pumps con peso corporal.",
+        your: "2 x 20 — Russian Twists con disco de 10 kg.",
+        duo: "Colocan dos tapetes juntos en el área de abdomen y completan el cierre simultáneamente.",
+        alt: "Crunches tradicionales con disco"
+      }
+    ]
+  },
+  viernes: {
+    title: "Viernes - Full Body, Core & Cardio Finisher",
+    focus: "Circuito y Acondicionamiento Sincronizado",
+    exercises: [
+      {
+        name: "1. Caminadora Sincronizada",
+        type: "shared",
+        badge: "Cardio 20 Minutos",
+        her: "Opción A: Zona 2 (Inclinación 8-12%, 5.5-6.5 km/h) O Opción B: Intervalos 1x1.",
+        your: "Coordinar misma opción e intensidad de caminadora.",
+        duo: "Toman dos caminadoras contiguas para coordinar el ritmo y tiempo.",
+        alt: "Elíptica o Escaladora"
+      },
+      {
+        name: "Circuito Full Body (3 Vueltas - 90 seg descanso)",
+        type: "shared",
+        badge: "Circuito de 6 Estaciones",
+        her: "Paso continuo por estaciones (12-15 reps por ejercicio).",
+        your: "Mismas estaciones ajustando carga e intención biomecánica.",
+        duo: "Avanzan juntos estación por estación ejecutando las repeticiones uno tras otro.",
+        alt: "Si una máquina está ocupada, usen las variantes indicadas abajo"
+      },
+      {
+        name: "• Leg Press (Variación de Pies)",
+        type: "shared",
+        badge: "Ajuste Biomecánico",
+        her: "15 reps (80-100 kg) — Pies arriba y separados (Enfoque Glúteo).",
+        your: "12 reps pesadas — Pies al centro y abajo (Enfoque Cuádriceps).",
+        duo: "Misma máquina; solo cambian la postura de los pies en la plataforma.",
+        alt: "Sentadilla Goblet con Kettlebell"
+      },
+      {
+        name: "• Chest Press Machine",
+        type: "shared",
+        badge: "Empuje Pecho",
+        her: "12 reps (20-30 kg).",
+        your: "10-12 reps pesadas (Hipertrofia de pecho).",
+        duo: "Ajuste rápido de clavija de peso entre series.",
+        alt: "Push-ups / Lagartijas en tapete"
+      },
+      {
+        name: "• Remo Agarre V en Polea",
+        type: "shared",
+        badge: "Tracción Espalda",
+        her: "12 reps.",
+        your: "10-12 reps (Densidad de espalda).",
+        duo: "Misma máquina de remo sentado en polea.",
+        alt: "Remo con mancuernas a dos manos"
+      },
+      {
+        name: "• Cable Wood Chop (Core & Oblicuos)",
+        type: "shared",
+        badge: "Abs Rotacional",
+        her: "12 reps por lado (10-15 kg).",
+        your: "12 reps por lado (Peso moderado/pesado para core).",
+        duo: "Misma torre de polea a altura media.",
+        alt: "Russian Twists con disco"
+      },
+      {
+        name: "• Kettlebell Swing",
+        type: "shared",
+        badge: "Cadena Posterior",
+        her: "15 reps (12 kg).",
+        your: "15 reps (16-20 kg).",
+        duo: "Toman dos Kettlebells del rack y ejecutan el movimiento simultáneamente.",
+        alt: "Dumbbell Snatch"
+      },
+      {
+        name: "• Mountain Climbers",
+        type: "shared",
+        badge: "Cierre Core (30 seg)",
+        her: "30 segundos continuos.",
+        your: "30 segundos continuos.",
+        duo: "Ejecución simultánea sobre tapete para finalizar la vuelta.",
+        alt: "Plancha dinámica"
+      }
+    ]
+  }
+};
 
     let currentDay = 'lunes';
 
