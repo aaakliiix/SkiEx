@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hot Lobito: Edición Acompañado de Thomsen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -13,38 +13,45 @@
       --card-bg: #16191d;
       --text-main: #e0e0e0;
       --text-dim: #909090;
-      --accent: #ff4d4d; 
-      --accent-muted: #3d1a1a;
+      --border-color: #2a2e35;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Inter', sans-serif;
       --radius: 12px;
+
+      /* Color Coding System */
+      --her-color: #ff4d8d;      /* Pink for Her */
+      --her-bg: rgba(255, 77, 141, 0.12);
+      --your-color: #00b4d8;     /* Cyan Blue for You */
+      --your-bg: rgba(0, 180, 216, 0.12);
+      --shared-color: #a855f7;   /* Purple for Shared */
+      --shared-bg: rgba(168, 85, 247, 0.12);
+      --alt-color: #ffb703;      /* Yellow for Fallbacks */
     }
 
     body {
       margin: 0;
-      padding: 40px 20px;
+      padding: 30px 15px;
       font-family: var(--font-sans);
       background: var(--bg);
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     header h1 {
       font-family: var(--font-serif);
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-style: italic;
       margin: 0;
-      letter-spacing: -1px;
     }
 
     .subtitle {
       font-size: 0.8rem;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       color: var(--text-dim);
       text-transform: uppercase;
       margin-top: 5px;
@@ -54,42 +61,64 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 600px;
+      max-width: 650px;
       margin: 0 auto 20px;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #222;
       padding-bottom: 10px;
     }
 
     .nav a {
-      color: var(--accent);
+      color: var(--your-color);
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
-    #day-label {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
+    /* Color Legend */
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      max-width: 650px;
+      margin: 0 auto 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
-    /* Day Selector Tabs */
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot.her { background: var(--her-color); }
+    .dot.your { background: var(--your-color); }
+    .dot.shared { background: var(--shared-color); }
+
+    /* Tabs */
     .day-tabs {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      max-width: 600px;
-      margin: 0 auto 30px;
+      gap: 8px;
+      max-width: 650px;
+      margin: 0 auto 25px;
     }
 
     .tab-btn {
       flex: 1 1 45%;
       background: var(--card-bg);
       color: var(--text-dim);
-      border: 1px solid #333;
-      padding: 10px 8px;
+      border: 1px solid var(--border-color);
+      padding: 10px;
       border-radius: var(--radius);
       cursor: pointer;
       font-weight: 600;
@@ -99,110 +128,145 @@
     }
 
     .tab-btn:hover {
-      border-color: var(--accent);
+      border-color: var(--your-color);
       color: var(--text-main);
     }
 
     .tab-btn.active {
-      background: var(--accent-muted);
-      color: var(--accent);
-      border-color: var(--accent);
+      background: rgba(0, 180, 216, 0.15);
+      color: var(--your-color);
+      border-color: var(--your-color);
     }
 
     .category h3 {
       font-family: var(--font-serif);
-      font-size: 1.8rem;
-      color: var(--accent);
-      margin-top: 20px;
-      border-left: 3px solid var(--accent);
-      padding-left: 15px;
+      font-size: 1.6rem;
+      color: var(--your-color);
+      margin-top: 15px;
+      border-left: 3px solid var(--your-color);
+      padding-left: 12px;
     }
 
     .category p.focus-subtitle {
-      margin: -10px 0 20px 18px;
-      font-size: 0.85rem;
+      margin: -8px 0 20px 15px;
+      font-size: 0.8rem;
       color: var(--text-dim);
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    /* Exercise Card Layout */
+    /* Exercise Card */
     .exercise {
       background: var(--card-bg);
       margin-bottom: 16px;
-      padding: 20px;
+      padding: 18px;
       border-radius: var(--radius);
-      border: 1px solid transparent;
-      transition: all 0.3s;
+      border: 1px solid var(--border-color);
+      position: relative;
     }
 
-    .exercise:hover {
-      border-color: var(--accent-muted);
-    }
-
-    .exercise-main {
+    .exercise-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
+      margin-bottom: 12px;
     }
 
-    .exercise-info h4 {
-      margin: 0;
-      font-weight: 600;
+    .exercise-title {
       font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0;
     }
 
-    .exercise-info p {
-      margin: 4px 0 0;
-      font-size: 0.85rem;
-      color: var(--text-dim);
+    .tag-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
+
+    .tag-shared { background: var(--shared-bg); color: var(--shared-color); border: 1px solid var(--shared-color); }
+    .tag-her { background: var(--her-bg); color: var(--her-color); border: 1px solid var(--her-color); }
+    .tag-your { background: var(--your-bg); color: var(--your-color); border: 1px solid var(--your-color); }
+
+    /* Dual Target Layout */
+    .targets-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .target-box {
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .target-her {
+      background: var(--her-bg);
+      border-left: 3px solid var(--her-color);
+    }
+
+    .target-your {
+      background: var(--your-bg);
+      border-left: 3px solid var(--your-color);
+    }
+
+    .target-shared {
+      background: var(--shared-bg);
+      border-left: 3px solid var(--shared-color);
+    }
+
+    .target-box strong {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .target-her strong { color: var(--her-color); }
+    .target-your strong { color: var(--your-color); }
+    .target-shared strong { color: var(--shared-color); }
 
     .actions {
       display: flex;
       gap: 8px;
+      margin-top: 10px;
     }
 
-    .tip-btn {
+    .btn-action {
       background: transparent;
       color: var(--text-dim);
       border: 1px solid #333;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      transition: all 0.2s;
     }
 
-    .tip-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    .btn-action:hover {
+      border-color: var(--alt-color);
+      color: var(--text-main);
     }
 
-    .tooltip-box {
+    .box-info {
       display: none;
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px dashed #2a2e35;
-      font-size: 0.85rem;
-      color: #b0b8c0;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 12px 15px;
+      margin-top: 10px;
+      padding: 10px 12px;
       border-radius: 8px;
-      line-height: 1.5;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      background: #1e2228;
+      border-left: 3px solid var(--alt-color);
+      color: #e0e0e0;
     }
 
-    .tooltip-box strong {
-      color: var(--accent);
-    }
-
-    .dual-notes {
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      color: #ffd166;
-    }
+    .box-info strong { color: var(--alt-color); }
   </style>
 </head>
 <body>
@@ -213,197 +277,346 @@
   </header>
 
   <div class="nav">
-    <a href="index.html">← Home Base</a>
-    <span id="day-label">Shared Sessions</span>
-    <span style="width: 80px;"></span>
+    <a href="index.html">← Menú Principal</a>
+    <span style="font-size: 0.85rem; color: var(--text-dim);">Días Compartidos</span>
   </div>
 
-  <!-- DAY SELECTOR TABS -->
+  <!-- COLOR LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><span class="dot her"></span> Ella</div>
+    <div class="legend-item"><span class="dot your"></span> Tú</div>
+    <div class="legend-item"><span class="dot shared"></span> Compartido</div>
+  </div>
+
   <div class="day-tabs">
-    <button class="tab-btn active" onclick="switchDay('mon_thu')">Mon/Thu: Glutes & Legs</button>
-    <button class="tab-btn" onclick="switchDay('tue')">Tue: Upper & Sculpt</button>
-    <button class="tab-btn" onclick="switchDay('wed_fri')">Wed/Fri: Full Body & Cardio</button>
+    <button class="tab-btn active" onclick="switchDay('lunes')">Lunes: Glúteo / Pecho & Core</button>
+    <button class="tab-btn" onclick="switchDay('miercoles')">Miércoles: Upper Body & Torso</button>
+    <button class="tab-btn" onclick="switchDay('jueves')">Jueves: Hipertrofia / Hombro & Abs</button>
+    <button class="tab-btn" onclick="switchDay('viernes')">Viernes: Full Body & Cardio</button>
   </div>
 
-  <div class="exercise-list" id="gym-container" style="max-width: 700px; margin: 0 auto;"></div>
+  <div id="gym-container" style="max-width: 650px; margin: 0 auto;"></div>
 
   <script>
-    // SHARED WORKOUT DATABASE
-    const sharedSchedule = {
-      mon_thu: {
-        title: "Glutes + Legs & Core (Mon/Thu)",
-        focus: "Her: Glute Focus | You: Heavy Legs & Core",
+    const routineData = {
+      lunes: {
+        title: "Lunes - Glúteo (Ella) + Pecho & Core (Tú)",
+        focus: "Módulo central de cadera & empuje de torso",
         exercises: [
-          { 
-            name: "Incline Treadmill Walk", 
-            detail: "Warm-Up - 10 Minutes (8-10% Incline)", 
-            tip: "Walk side-by-side at 2.8 - 3.2 mph. Keep hips square and drive through heels to fire up the posterior chain.",
-            dual: "👯 Both walk together; great for catching up before lifting."
+          {
+            name: "1. Hip Thrust (Ella) vs Press Pecho Inclinado (Tú)",
+            type: "split",
+            badge: "Estación Combinada",
+            her: "4 x 8 (50-70 kg / 110-155 lb) — Glúteo pesado en máquina/barra. Últimas 2 reps al límite.",
+            your: "4 x 10 — Press de Pecho Inclinado con Mancuernas (Mismo módulo o banco contiguo).",
+            duo: "Llevan un par de mancuernas al área de Hip Thrust. Mientras ella realiza su serie, tú haces tu Press de Pecho al lado. Intercalan los 2 min de descanso.",
+            alt: "Ella: Glute Drive Machine | Tú: Press Pecho en Máquina"
           },
-          { 
-            name: "Leg Press Station", 
-            detail: "Machine - 3x10", 
-            tip: "Her: Feet high & wide for maximum glute stretch. You: Mid/standard foot placement for quads & legs.",
-            dual: "👯 Share 1 machine! Alternate sets while re-racking plates."
+          {
+            name: "2. RDL Machine (Peso Muerto Rumano)",
+            type: "shared",
+            badge: "Estación Compartida",
+            her: "4 x 10 (35-45 kg) — Bajada de 3 seg enfocada en tracción de glúteo.",
+            your: "4 x 8-10 — RDL con Barra o Máquina enfocando isquios de forma pesada.",
+            duo: "Si usan la misma máquina: ella mantiene la cadera alta para glúteo; tú bajas con mayor flexión de rodilla para cargar isquiotibiales.",
+            alt: "RDL con barra olímpica o RDL con mancuernas pesadas"
           },
-          { 
-            name: "Hip Thrust Station", 
-            detail: "Machine or Barbell - 3x10", 
-            tip: "Drive through heels and lock core down at the top. Squeeze glutes for 1 second at full extension.",
-            dual: "👯 Her main glute movement; great hamstrings/posterior builder for you."
+          {
+            name: "3. Step-Up Machine (Ella) vs Cable Crunches (Tú)",
+            type: "split",
+            badge: "Estación Combinada",
+            her: "3 x 10 por pierna — Step-Up Machine o banco (Empujar con el talón).",
+            your: "3 x 15 — Cable Crunches (Abdomen pesado) en la polea contigua.",
+            duo: "Ella trabaja piernas en el Step-Up mientras tú ejecutas tu bloque de abdomen pesado en la torre de poleas.",
+            alt: "Ella: Prensa a 1 pierna | Tú: Ab Wheel Rollouts en tapete"
           },
-          { 
-            name: "Step-Up Station", 
-            detail: "Step-Up Machine or Bench - 3x10 per leg", 
-            tip: "Lean slightly forward and push through front heel without bouncing off bottom foot.",
-            dual: "👯 Use adjacent step boxes or alternate on the step-up machine."
+          {
+            name: "4. Cable Kickbacks (Ella) vs Tríceps / Abs (Tú)",
+            type: "shared",
+            badge: "Módulo de Polea Doble",
+            her: "3 x 15 por pierna — Patada de glúteo en polea baja con grillete.",
+            your: "3 x 12-15 — Tríceps Polea Cuerda o Elevación de Piernas Colgado.",
+            duo: "Misma torre de poleas dobles: ella engancha el grillete a la polea inferior izquierda y tú usas la cuerda en la polea superior derecha.",
+            alt: "Ella: Patada en multipower | Tú: Fondos en paralelas"
           },
-          { 
-            name: "Cable Tower Superset", 
-            detail: "3 Sets - Cable Crunches & Kickbacks", 
-            tip: "Person A uses top rope attachment for Cable Crunches; Person B uses ankle strap on bottom pulley for Kickbacks/Pull-throughs.",
-            dual: "👯 Use both pulleys on one dual-cable tower simultaneously!"
-          },
-          { 
-            name: "Captain's Chair / Hanging Raises", 
-            detail: "Core Finisher - 3xMax", 
-            tip: "Control the movement without swinging. Pull knees up to chest using lower abs.",
-            dual: "👯 You hit hanging raises while she finishes glutes or joins core."
+          {
+            name: "5. Finisher: Abducción con Banda + Plancha",
+            type: "shared",
+            badge: "Finisher Core/Glúteo",
+            her: "2 x 30 — Abducción con banda de resistencia.",
+            your: "2 x 45 seg — Plancha isométrica / Hollow hold.",
+            duo: "Se colocan en dos tapetes contiguos en la zona de estiramiento para cerrar la sesión.",
+            alt: "Monster walk con banda lateral"
           }
         ]
       },
 
-      tue: {
-        title: "Upper Body & Arm Sculpt (Tue)",
-        focus: "Chest, Lats, Shoulders & Arms",
+      miercoles: {
+        title: "Miércoles - Upper Body & Torso Balanceado",
+        focus: "Espalda, Hombro, Pecho & Brazos (Ambos)",
         exercises: [
-          { 
-            name: "Incline Treadmill Walk", 
-            detail: "Warm-Up - 8 Minutes", 
-            tip: "Brisk walk to get blood flowing before upper body compound lifts.",
-            dual: "👯 Warm up together."
+          {
+            name: "1. Lat Pulldown (Jalón al Pecho)",
+            type: "shared",
+            badge: "Misma Máquina",
+            her: "4 x 12 (25-35 kg) — Barra horizontal dirigida al pecho alto.",
+            your: "4 x 8-10 — Carga pesada con torso erguido enfocando dorsales.",
+            duo: "Estación 100% compartida. Solo cambian la clavija de peso entre series.",
+            alt: "Jalón en polea con agarre neutro o Dominadas asistidas"
           },
-          { 
-            name: "Machine Chest Press", 
-            detail: "Machine - 3x10", 
-            tip: "Keep shoulder blades retracted and elbows angled slightly below shoulder line.",
-            dual: "👯 Swap seat height/pin weight easily between sets."
+          {
+            name: "2. Remo Pecho Apoyado con Mancuernas",
+            type: "shared",
+            badge: "Bancos Contiguos",
+            her: "4 x 10 (8-10 kg por mancuerna).",
+            your: "4 x 10 — Remo pesado enfocando densidad de espalda.",
+            duo: "Colocan dos bancos inclinados lado a lado en el área de peso libre.",
+            alt: "Remo en polea baja con agarre abierto o T-Bar Row"
           },
-          { 
-            name: "Lat Pulldowns", 
-            detail: "Cable Tower - 3x10", 
-            tip: "Pull bar down toward collarbone, driving elbows toward your back pockets.",
-            dual: "👯 Share cable station; alternate sets."
+          {
+            name: "3. Press de Hombro con Mancuernas",
+            type: "shared",
+            badge: "Mismo Banco",
+            her: "3 x 12 (6-8 kg por mancuerna).",
+            your: "3 x 10 — Press militar pesado de hombro.",
+            duo: "Comparten el mismo banco o usan dos bancos contiguos para mantener el ritmo.",
+            alt: "Press de hombro sentado en máquina"
           },
-          { 
-            name: "Cable Lateral Raises", 
-            detail: "Single Arm - 3x12", 
-            tip: "Raise arm out to side with a slight bend in the elbow up to shoulder height.",
-            dual: "👯 Work side-by-side using opposite pulleys."
+          {
+            name: "4. Elevaciones Laterales + Cable Crunches",
+            type: "shared",
+            badge: "Hombro & Abs",
+            her: "3 x 15 — Elevaciones laterales estrictas (3-5 kg).",
+            your: "3 x 12 Lateral Raises + 3 x 15 Cable Crunches (Superserie Abs).",
+            duo: "Ejecutan el trabajo de hombro simultáneamente frente al espejo; tú agregas la serie de abdomen en la polea.",
+            alt: "Elevaciones laterales en polea baja"
           },
-          { 
-            name: "Cable Arm Superset", 
-            detail: "3x12 Bicep Curls + 3x12 Tricep Pushdowns", 
-            tip: "Keep elbows pinned to torso; move only forearms.",
-            dual: "👯 Alternate arms/triceps on dual cable handles."
+          {
+            name: "5. Superserie de Brazos: Bíceps + Tríceps",
+            type: "shared",
+            badge: "Superserie Rotativa",
+            her: "3 x 12 Curl Bíceps + 3 x 15 Tríceps Cuerda en Polea.",
+            your: "3 x 10 Curl Bíceps + 3 x 12 Tríceps Cuerda.",
+            duo: "Mientras uno realiza el Curl de Bíceps con mancuernas, el otro usa la polea para Tríceps Cuerda y luego intercambian.",
+            alt: "Tríceps: Copita con mancuerna sobre cabeza"
           }
         ]
       },
 
-      wed_fri: {
-        title: "Full Body & Treadmill HIIT (Wed/Fri)",
-        focus: "Total Body Compounds & Cardio Finisher",
+      jueves: {
+        title: "Jueves - Hipertrofia Glúteo (Ella) + Hombro & Abs (Tú)",
+        focus: "Ella: Volumen Glúteo | Tú: Empuje, Densidad & Abdomen",
         exercises: [
-          { 
-            name: "Seated Cable Rows", 
-            detail: "Cable Tower - 3x10", 
-            tip: "Pull handle into navel while keeping chest upright.",
-            dual: "👯 Share station or use side-by-side cable rows."
+          {
+            name: "1. Standing Hip Thrust (Ella) vs Press Arnold (Tú)",
+            type: "split",
+            badge: "Estación Combinada",
+            her: "4 x 12 (40-55 kg) — Enfocado en hipertrofia de glúteo.",
+            your: "4 x 10 — Press Arnold con Mancuernas o Fondos en Paralelas.",
+            duo: "Te instalas en el área de pesas/paralelas al lado de su máquina de Hip Thrust acompañando los tiempos de descanso.",
+            alt: "Ella: Hip Thrust con barra | Tú: Press Militar con barra"
           },
-          { 
-            name: "Dumbbell Shoulder Press", 
-            detail: "Seated Bench - 3x10", 
-            tip: "Press dumbbells up overhead without arching lower back excessively.",
-            dual: "👯 Grab dumbbells and set up two benches next to each other."
+          {
+            name: "2. Lunge Machine (Ella) vs Remo Unilateral (Tú)",
+            type: "split",
+            badge: "Estación Combinada",
+            her: "3 x 12 por pierna — Zancadas en máquina o con mancuernas.",
+            your: "3 x 10 por brazo — Remo Unilateral con Mancuerna pesada.",
+            duo: "Usan el mismo espacio en peso libre: mientras ella recorre el pasillo en zancadas, tú trabajas densidad de espalda en banco.",
+            alt: "Ella: Desplantes caminando | Tú: Remo en máquina de palanca"
           },
-          { 
-            name: "Hip Abductor Machine", 
-            detail: "Machine - 3x15", 
-            tip: "Pause 1 second at wide extension to maximize glute medius activation.",
-            dual: "👯 Quick set rotations on the machine."
+          {
+            name: "3. Single Leg RDL (Ella) vs Face Pulls (Tú)",
+            type: "split",
+            badge: "Estación Combinada",
+            her: "3 x 12 por pierna (10-12 kg) — Trabajo unilateral y glúteo medio.",
+            your: "3 x 15 — Face Pulls en Polea (Hombro posterior & postura).",
+            duo: "Ella trabaja estabilidad de pie con mancuerna y tú usas la polea adyacente para Face Pulls.",
+            alt: "Ella: RDL en polea baja | Tú: Pájaros con mancuernas"
           },
-          { 
-            name: "Treadmill HIIT Finisher", 
-            detail: "Cardio Intervals - 12-15 Minutes", 
-            tip: "1 min walk @ 3 mph / 30s incline walk or sprint @ 6-8%. Repeat for 8-10 rounds.",
-            dual: "👯 Grab adjacent treadmills and match interval timers!"
+          {
+            name: "4. Standing Abductor (Ella) vs Hanging Leg Raises (Tú)",
+            type: "split",
+            badge: "Estación Combinada",
+            her: "4 x 20 — Última serie al fallo en máquina de abducción.",
+            your: "4 x 15 — Elevaciones de Piernas Colgado en Silla Romana (Abs).",
+            duo: "Estaciones contiguas. El que termina supervisa y cronometra el descanso del otro.",
+            alt: "Ella: Abducciones en polea baja | Tú: Crunches declinados"
+          },
+          {
+            name: "5. Frog Pumps (Ella) vs Russian Twists (Tú)",
+            type: "shared",
+            badge: "Finisher en Tapete",
+            her: "2 x 35 — Frog Pumps con peso corporal.",
+            your: "2 x 20 — Russian Twists con disco de 10 kg.",
+            duo: "Colocan dos tapetes juntos en el área de abdomen y completan las repeticiones al mismo tiempo.",
+            alt: "Crunches tradicionales con disco"
+          }
+        ]
+      },
+
+      viernes: {
+        title: "Viernes - Full Body & Cardio Finisher",
+        focus: "Circuito y Acondicionamiento Sincronizado",
+        exercises: [
+          {
+            name: "1. Caminadora Sincronizada",
+            type: "shared",
+            badge: "Cardio 20 Minutos",
+            her: "Opción A: Zona 2 (Inclinación 8-12%, 5.5-6.5 km/h) O Opción B: Intervalos 1x1.",
+            your: "Coordinar misma opción e intensidad de caminadora.",
+            duo: "Toman dos caminadoras contiguas para coordinar los intervalos y ritmos de caminata.",
+            alt: "Elíptica o Escaladora"
+          },
+          {
+            name: "Circuito Full Body (3 Vueltas - 90 seg descanso)",
+            type: "shared",
+            badge: "Circuito de 6 Estaciones",
+            her: "Paso continuo por estaciones (12-15 reps).",
+            your: "Mismas estaciones con ajustes de biomecánica y peso.",
+            duo: "Avanzan juntos estación por estación ejecutando las repeticiones uno tras otro.",
+            alt: "Si una máquina está ocupada, usen las variantes indicadas abajo"
+          },
+          {
+            name: "• Leg Press (Variación de Pies)",
+            type: "shared",
+            badge: "Ajuste Biomecánico",
+            her: "15 reps (80-100 kg) — Pies arriba y separados (Enfoque Glúteo).",
+            your: "12 reps pesadas — Pies al centro y abajo (Enfoque Cuádriceps).",
+            duo: "Misma máquina; solo cambian rápidamente la postura de los pies en la plataforma.",
+            alt: "Sentadilla Goblet con Kettlebell"
+          },
+          {
+            name: "• Chest Press Machine",
+            type: "shared",
+            badge: "Empuje Pecho",
+            her: "12 reps (20-30 kg).",
+            your: "10-12 reps pesadas.",
+            duo: "Cambio rápido de clavija de peso.",
+            alt: "Push-ups / Lagartijas en tapete"
+          },
+          {
+            name: "• Remo Agarre V en Polea",
+            type: "shared",
+            badge: "Tracción Espalda",
+            her: "12 reps.",
+            your: "10-12 reps.",
+            duo: "Misma máquina de remo sentado.",
+            alt: "Remo con mancuernas a dos manos"
+          },
+          {
+            name: "• Cable Wood Chop (Core & Oblicuos)",
+            type: "shared",
+            badge: "Abs Rotacional",
+            her: "12 reps por lado (10-15 kg).",
+            your: "12 reps por lado (Peso moderado/pesado).",
+            duo: "Trabajo directo de abdomen en polea.",
+            alt: "Russian Twists con disco"
+          },
+          {
+            name: "• Kettlebell Swing",
+            type: "shared",
+            badge: "Cadena Posterior",
+            her: "15 reps (12 kg).",
+            your: "15 reps (16-20 kg).",
+            duo: "Toman dos Kettlebells del rack y ejecutan el movimiento lado a lado.",
+            alt: "Dumbbell Snatch"
+          },
+          {
+            name: "• Mountain Climbers",
+            type: "shared",
+            badge: "Cierre Core (30 seg)",
+            her: "30 segundos continuos.",
+            your: "30 segundos continuos.",
+            duo: "Ejecución simultánea sobre tapete para finalizar la vuelta.",
+            alt: "Plancha dinámica"
           }
         ]
       }
     };
 
-    let activeDay = 'mon_thu';
+    let currentDay = 'lunes';
 
-    function toggleTip(index) {
-      const tipBox = document.getElementById(`tip-${index}`);
-      tipBox.style.display = (tipBox.style.display === 'block') ? 'none' : 'block';
+    function toggleAlt(id) {
+      const el = document.getElementById(id);
+      el.style.display = (el.style.display === 'block') ? 'none' : 'block';
     }
 
     function switchDay(dayKey) {
-      activeDay = dayKey;
-      
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach((btn, index) => {
-        if ((dayKey === 'mon_thu' && index === 0) || 
-            (dayKey === 'tue' && index === 1) || 
-            (dayKey === 'wed_fri' && index === 2)) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
+      currentDay = dayKey;
+      const btns = document.querySelectorAll('.tab-btn');
+      const keys = ['lunes', 'miercoles', 'jueves', 'viernes'];
+      btns.forEach((btn, idx) => {
+        if (keys[idx] === dayKey) btn.classList.add('active');
+        else btn.classList.remove('active');
       });
-
-      renderGym();
+      render();
     }
 
-    function renderGym() {
+    function render() {
       const container = document.getElementById('gym-container');
       container.innerHTML = '';
-      
-      const currentSchedule = sharedSchedule[activeDay];
+      const data = routineData[currentDay];
 
-      const sectionDiv = document.createElement('div');
-      sectionDiv.className = 'category';
-      sectionDiv.innerHTML = `
-        <h3>${currentSchedule.title}</h3>
-        <p class="focus-subtitle">${currentSchedule.focus}</p>
+      const headerDiv = document.createElement('div');
+      headerDiv.className = 'category';
+      headerDiv.innerHTML = `
+        <h3>${data.title}</h3>
+        <p class="focus-subtitle">${data.focus}</p>
       `;
-      
-      currentSchedule.exercises.forEach((ex, idx) => {
+      container.appendChild(headerDiv);
+
+      data.exercises.forEach((ex, i) => {
         const card = document.createElement('div');
         card.className = 'exercise';
+
+        let badgeClass = 'tag-shared';
+        if (ex.type === 'split') badgeClass = 'tag-your';
+
+        let targetsHTML = '';
+        if (ex.type === 'split') {
+          targetsHTML = `
+            <div class="targets-container">
+              <div class="target-box target-her">
+                <strong>💖 Ella:</strong> ${ex.her}
+              </div>
+              <div class="target-box target-your">
+                <strong>💙 Tú:</strong> ${ex.your}
+              </div>
+            </div>
+          `;
+        } else {
+          targetsHTML = `
+            <div class="targets-container">
+              <div class="target-box target-shared">
+                <strong>💖 Ella:</strong> ${ex.her}<br>
+                <strong style="margin-top: 4px;">💙 Tú:</strong> ${ex.your}
+              </div>
+            </div>
+          `;
+        }
+
         card.innerHTML = `
-          <div class="exercise-main">
-            <div class="exercise-info">
-              <h4>${ex.name}</h4>
-              <p>${ex.detail}</p>
-            </div>
-            <div class="actions">
-              <button class="tip-btn" onclick="toggleTip(${idx})">💡 Duo Tips</button>
-            </div>
+          <div class="exercise-header">
+            <h4 class="exercise-title">${ex.name}</h4>
+            <span class="tag-badge ${badgeClass}">${ex.badge}</span>
           </div>
-          <div class="tooltip-box" id="tip-${idx}">
-            <div><strong>Form & Technique:</strong> ${ex.tip}</div>
-            <div class="dual-notes"><strong>Shared Flow:</strong> ${ex.dual}</div>
+          ${targetsHTML}
+          <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 8px;">
+            <strong>👯 Dinámica Dúo:</strong> ${ex.duo}
+          </div>
+          <div class="actions">
+            <button class="btn-action" onclick="toggleAlt('alt-${i}')">🔄 Si está ocupada</button>
+          </div>
+          <div class="box-info" id="alt-${i}">
+            <strong>Alternativa Rápida:</strong> ${ex.alt}
           </div>
         `;
-        sectionDiv.appendChild(card);
+        container.appendChild(card);
       });
-
-      container.appendChild(sectionDiv);
     }
 
-    renderGym();
+    render();
   </script>
 </body>
 </html>
