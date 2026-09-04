@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
   <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lobito Training</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 
-  
   <style>
     :root {
       --bg: #0f1113;
@@ -36,7 +35,7 @@
 
     header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
     }
 
     header h1 {
@@ -49,7 +48,7 @@
 
     header img {
       width: 100px;
-      margin: 20px 0;
+      margin: 20px 0 10px;
     }
 
     .nav {
@@ -57,7 +56,7 @@
       justify-content: space-between;
       align-items: center;
       max-width: 600px;
-      margin: 0 auto 30px;
+      margin: 0 auto 20px;
       border-bottom: 1px solid #333;
       padding-bottom: 10px;
     }
@@ -101,9 +100,9 @@
 
     .category h3 {
       font-family: var(--font-serif);
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: var(--accent);
-      margin-top: 40px;
+      margin-top: 35px;
       border-left: 3px solid var(--accent);
       padding-left: 15px;
     }
@@ -130,6 +129,18 @@
       font-size: 1.1rem;
     }
 
+    .muscle-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #38bdf8;
+      background-color: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 6px 0 4px;
+    }
+
     .exercise-info p {
       margin: 4px 0 0;
       font-size: 0.85rem;
@@ -138,6 +149,7 @@
 
     .timer-control {
       text-align: right;
+      min-width: 80px;
     }
 
     .timer-display {
@@ -187,51 +199,72 @@
     <button id="next-day">Next</button>
   </div>
 
-<div class="nav">
-   <a href="gym.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.7rem;">Modo Gym Activado</a>
-   <a href="gym-w-thomsen.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.7rem;">Cuando se va acompañado</a>
-  
-</div>
-  
+  <div class="nav">
+    <a href="gym.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.7rem;">Modo Gym Activado</a>
+    <a href="gym-w-thomsen.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.7rem;">Cuando se va acompañado</a>
+  </div>
+   
   <div id="notification"></div>
 
   <div class="exercise-list" id="exercise-container"></div>
 
   <script>
+    // REVISED HOME FULL BODY (Backup for missing Gym Day)
     const masterFullBody = [
-      { name: "Goblet Squats", detail: "Barbell/Dumbbell - 3x12", duration: 3 },
-      { name: "Overhead Press", detail: "Barbell (6kg) - 3x10", duration: 3 },
-      { name: "Lateral Raises", detail: "Slow & Controlled - 3x12", duration: 3 },
-      { name: "Push-ups", detail: "Chest Focus - 3x10", duration: 3 },
-      { name: "Bicep Curls", detail: "Dumbbells - 3x12", duration: 3 },
-      { name: "Hammer Curls", detail: "Dumbbells (Neutral Grip) - 3x10", duration: 3 },
-      { name: "Triceps Dips", detail: "Chair/Couch - 3x12", duration: 3 },
-      { name: "Hollow Body Hold", detail: "Lower back glued to floor - 45 sec", duration: 1 },
-      { name: "Flutter Kicks", detail: "Hands under glutes - 1 min", duration: 1 },
-      { name: "Plank Shoulder Taps", detail: "Minimal hip rock - 1 min", duration: 1 },
-      { name: "Deadbugs", detail: "Slow & Controlled - 1 min", duration: 1 }
+      { name: "Barbell / DB Goblet Squats", detail: "15kg Bar or Heavy DB - 3x12", muscles: "Quads & Glutes", duration: 3 },
+      { name: "Dumbbell RDLs", detail: "Dumbbells (8-10kg) - 3x12", muscles: "Hamstrings & Glutes", duration: 3 },
+      { name: "Overhead Barbell Press", detail: "15kg Bar or 2x DBs - 3x10", muscles: "Front & Side Shoulders", duration: 3 },
+      { name: "DB Bent-Over Rows", detail: "Dumbbells - 3x12", muscles: "Lats & Upper Back", duration: 3 },
+      { name: "Push-ups or DB Floor Press", detail: "Chest Focus - 3x10-12", muscles: "Chest & Triceps", duration: 3 },
+      { name: "Lateral Raises", detail: "Light DBs (3-5kg) - 3x12", muscles: "Side Delts (Shoulder Width)", duration: 3 },
+      { name: "Superset: Bicep Curls + Dips", detail: "Dumbbells + Chair/Couch - 3x12 each", muscles: "Biceps & Triceps", duration: 3 },
+      { name: "Deadbugs", detail: "Slow & Controlled - 3x1 min", muscles: "Deep Core & Stability", duration: 1 }
+    ];
+
+    // TUESDAY: STANDING CORE & GLUTE ISOLATION
+    const tuesdayHomeWorkout = [
+      { name: "Block 1: Warm-up Figure 8s", detail: "20 reps with light DB (3-5kg)", muscles: "Core Warm-Up & Mobility", duration: 2 },
+      { name: "Block 1: Wood Choppers", detail: "10 Left / 10 Right", muscles: "Obliques & Rotational Core", duration: 2 },
+      { name: "Block 1: Transition Figure 8s", detail: "10 reps", muscles: "Core Engagement", duration: 1 },
+      { name: "Block 2: Wood Chopper + Fig 8 Combo", detail: "10 reps total", muscles: "Obliques & Deep Core", duration: 2 },
+      { name: "Block 2: Single Leg March to Press", detail: "15 Left / 15 Right (10lb DBs)", muscles: "Core Stability, Balance & Shoulders", duration: 3 },
+      { name: "Block 3: Cross Body Crunch", detail: "10 Right / 10 Left", muscles: "Obliques & Upper Abs", duration: 2 },
+      { name: "Block 3: Around the World", detail: "10 Clockwise / 10 Counter-Clockwise", muscles: "Full Core & Shoulder Stability", duration: 2 },
+      { name: "DB Glute Bridges / Hip Thrusts", detail: "15kg Bar or Heavy DB on hips - 3x15", muscles: "Gluteus Maximus", duration: 3 },
+      { name: "Standing Cable/Band Abductions", detail: "Band or Ankle Weight - 3x15 per side", muscles: "Gluteus Medius (Side Glutes)", duration: 3 }
+    ];
+
+    // THURSDAY: UPPER BODY, ARMS & CORE STABILITY
+    const thursdayHomeWorkout = [
+      { name: "Standing DB Shoulder Press", detail: "Dumbbells - 3x10", muscles: "Front & Side Shoulders", duration: 3 },
+      { name: "Lean-Away DB Lateral Raises", detail: "Light DBs - 3x12 per side", muscles: "Side Delts (3D Cap)", duration: 3 },
+      { name: "DB Hammer Curls", detail: "Dumbbells - 3x12", muscles: "Biceps & Forearms", duration: 3 },
+      { name: "Overhead DB Tricep Extension", detail: "Single Heavy DB - 3x12", muscles: "Triceps (Long Head)", duration: 3 },
+      { name: "Hollow Body Hold", detail: "Lower back glued to floor - 3x45 sec", muscles: "Abs & Core", duration: 1 },
+      { name: "Plank Shoulder Taps", detail: "Minimal hip rock - 3x1 min", muscles: "Anti-Rotational Core", duration: 1 },
+      { name: "Flutter Kicks", detail: "Hands under glutes - 3x1 min", muscles: "Lower Abs", duration: 1 }
     ];
 
     const warmUp = [
-      { name: "Jumping Jacks", detail: "1 min", duration: 1 },
-      { name: "Arm Circles", detail: "1 min", duration: 1 },
-      { name: "Downward Dog", detail: "Stretch", duration: 1 }
+      { name: "Jumping Jacks", detail: "1 min", muscles: "Cardio Warm-Up", duration: 1 },
+      { name: "Arm Circles & Shoulder Dislocates", detail: "1 min", muscles: "Shoulder Mobility", duration: 1 },
+      { name: "Downward Dog to Cobra", detail: "Dynamic Flow - 1 min", muscles: "Spine & Hamstrings", duration: 1 }
     ];
 
     const coolDown = [
-      { name: "Child's Pose", detail: "Relax", duration: 1 },
-      { name: "Cat-Cow Stretch", detail: "Spine Mobility", duration: 1 },
-      { name: "Cobra Stretch", detail: "Abs", duration: 1 }
+      { name: "Child's Pose", detail: "Hold for 1 min", muscles: "Lower Back & Lats", duration: 1 },
+      { name: "Cat-Cow Stretch", detail: "1 min", muscles: "Spine Mobility", duration: 1 },
+      { name: "Cobra Stretch", detail: "45 sec", muscles: "Abs & Hip Flexors", duration: 1 }
     ];
 
     const exercises = {
       Monday: { WarmUp: warmUp, Exercise: masterFullBody, CoolDown: coolDown },
-      Tuesday: { WarmUp: [{name: "Light Walk", detail: "Recovery", duration: 20}], Exercise: [], CoolDown: [] },
+      Tuesday: { WarmUp: warmUp, Exercise: tuesdayHomeWorkout, CoolDown: coolDown },
       Wednesday: { WarmUp: warmUp, Exercise: masterFullBody, CoolDown: coolDown },
-      Thursday: { WarmUp: [{name: "Yoga/Stretch", detail: "Recovery", duration: 15}], Exercise: [], CoolDown: [] },
+      Thursday: { WarmUp: warmUp, Exercise: thursdayHomeWorkout, CoolDown: coolDown },
       Friday: { WarmUp: warmUp, Exercise: masterFullBody, CoolDown: coolDown },
-      Saturday: { WarmUp: [], Exercise: [], CoolDown: [] },
-      Sunday: { WarmUp: [], Exercise: [], CoolDown: [] }
+      Saturday: { WarmUp: [{name: "Light Walk", detail: "Active Recovery", duration: 20}], Exercise: [], CoolDown: [] },
+      Sunday: { WarmUp: [{name: "Rest & Stretch", detail: "Relaxation", duration: 15}], Exercise: [], CoolDown: [] }
     };
 
     const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -260,10 +293,11 @@
           data[s.key].forEach(ex => {
             const card = document.createElement('div');
             card.className = 'exercise';
-            const timerId = `t-${ex.name.replace(/\s/g, '')}`;
+            const timerId = `t-${ex.name.replace(/[^a-zA-Z0-9]/g, '')}`;
             card.innerHTML = `
               <div class="exercise-info">
                 <h4>${ex.name}</h4>
+                ${ex.muscles ? `<span class="muscle-tag">🎯 ${ex.muscles}</span>` : ''}
                 <p>${ex.detail}</p>
               </div>
               <div class="timer-control">
@@ -283,17 +317,20 @@
 
     window.runTimer = function(name, seconds, btn) {
       btn.disabled = true;
-      const display = document.getElementById(`t-${name.replace(/\s/g, '')}`);
+      const cleanId = name.replace(/[^a-zA-Z0-9]/g, '');
+      const display = document.getElementById(`t-${cleanId}`);
       let timeLeft = seconds;
 
       const interval = setInterval(() => {
         const m = Math.floor(timeLeft / 60);
         const s = timeLeft % 60;
-        display.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        if (display) {
+          display.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
         
         if (timeLeft <= 0) {
           clearInterval(interval);
-          display.textContent = "Done";
+          if (display) display.textContent = "Done";
           btn.disabled = false;
           showNotify(name + " Finished!");
         }
