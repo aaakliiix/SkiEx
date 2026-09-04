@@ -352,7 +352,8 @@
   </script>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js');
+      // Adding a query parameter forces the browser to register the updated SW immediately
+      navigator.serviceWorker.register('./sw.js?v=2');
     }
   </script>
 </body>
