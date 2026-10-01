@@ -255,48 +255,49 @@
 
   <script>
    // GYM SPECIFIC DATABASE - EXPANDED 60-MIN ROUTINE WITH TARGET MUSCLES
-    const masterGymSchedule = {
-      day1: {
-        title: "Day 1: Lower Body, Glutes & Heavy Core",
-        focus: "Leg Press, RDLs, Glutes & Abs (~60 Min)",
-        exercises: [
-          { name: "Incline Treadmill Warm-Up", detail: "Cardio - 10 Minutes (8-10% Incline)", muscles: "Glutes, Calves & Warm-Up", duration: 10, tip: "Speed 2.8 - 3.2 mph. Press through heels to activate glutes, avoid holding handles.", alt: "Elliptical or Stationary Bike." },
-          { name: "Leg Press", detail: "Machine - 3x10 (Slow 3s eccentric)", muscles: "Quads, Glutes & Hamstrings", duration: 3, tip: "Feet high on board for glutes/hamstrings. Never lock knees straight.", alt: "Hack Squat Machine or Heavy DB Goblet Squats." },
-          { name: "Dumbbell RDLs", detail: "Dumbbells - 3x10-12", muscles: "Hamstrings & Lower Glutes", duration: 3, tip: "Hinge at hips, keep dumbbells close to shins, squeeze glutes at the top.", alt: "Seated or Lying Leg Curl Machine." },
-          { name: "Seated Leg Curl", detail: "Machine - 3x12", muscles: "Hamstrings", duration: 3, tip: "Lock thigh pad down snug. Bend knees smoothly toward seat.", alt: "Dumbbell Hamstring Curls on Flat Bench." },
-          { name: "Hip Abductor Machine", detail: "Machine - 3x15", muscles: "Gluteus Medius & Outer Hips", duration: 3, tip: "Lean slightly forward, press knees outward and hold 1 sec.", alt: "Standing Cable Ankle Abductions or Band Walks." },
-          { name: "Cable Crunches", detail: "Kneeling Rope - 3x15", muscles: "Upper Abs", duration: 3, tip: "Curl ribs to hips using abs, avoid pulling down with arms.", alt: "Machine Ab Crunch or Weighted Decline Crunches." },
-          { name: "Hanging Leg Raises", detail: "Captain's Chair - 3xMax", muscles: "Lower Abs & Hip Flexors", duration: 2, tip: "Flat back against pad. Lift knees smoothly without swinging.", alt: "Lying Reverse Crunches or Dip Bar Knee Raises." }
-        ]
-      },
-      day2: {
-        title: "Day 2: Upper Body, 3D Shoulders & Arm Sculpt",
-        focus: "Chest, Lats, Dedicated Shoulders, Biceps & Triceps (~60 Min)",
-        exercises: [
-          { name: "Incline Treadmill Walk", detail: "Warm-Up - 8 Minutes (Incline 8-10%)", muscles: "Calves & Cardio Warm-Up", duration: 8, tip: "Speed 2.8 - 3.2 mph. Brisk walk without holding handles.", alt: "Stationary Bike or Elliptical." },
-          { name: "Machine Chest Press", detail: "Machine - 3x10", muscles: "Chest & Front Shoulders", duration: 3, tip: "Handles at mid-chest level. Drive forward, keep shoulders back.", alt: "Flat Dumbbell Bench Press or Push-ups." },
-          { name: "Lat Pulldowns", detail: "Wide Grip Cable - 3x10", muscles: "Lats & Upper Back", duration: 3, tip: "Pull bar down to upper chest while leaning back slightly.", alt: "Assisted Pull-Up Machine or High Cable Rows." },
-          { name: "Seated DB Shoulder Press", detail: "Dumbbells - 3x10", muscles: "Front & Side Shoulders", duration: 3, tip: "Elbows angled slightly forward. Press straight up overhead.", alt: "Shoulder Press Machine or Arnold Press." },
-          { name: "Cable Lateral Raises", detail: "Single Arm - 3x12 per side", muscles: "Side Shoulders (Width & Cap)", duration: 3, tip: "Pulley low. Lead with elbow up to shoulder height.", alt: "Standing Dumbbell Lateral Raises." },
-          { name: "Face Pulls / Rear Delt Cable Flyes", detail: "Rope Attachment - 3x15", muscles: "Rear Shoulders (3D Shape)", duration: 3, tip: "Pulley at eye level. Pull rope toward forehead, flare elbows out.", alt: "Bent-Over DB Rear Delt Flyes on Bench." },
-          { name: "Cable Tricep Pushdowns", detail: "Rope Attachment - 3x12", muscles: "Triceps (Back of Arm)", duration: 3, tip: "Pin elbows to ribs. Push down and spread rope ends apart.", alt: "Overhead DB Extension or Bench Dips." },
-          { name: "Cable Bicep Curls", detail: "Straight Bar/Rope - 3x12", muscles: "Biceps (Front of Arm)", duration: 3, tip: "Elbows locked at sides, curl up smoothly.", alt: "Dumbbell Hammer Curls or Preacher Machine." }
-        ]
-      },
-      day3: {
-        title: "Day 3: Full Body, Arm Blitz & Cardio",
-        focus: "Compounds, Chest Flyes, Arm Superset & HIIT (~60 Min)",
-        exercises: [
-          { name: "Leg Press or Hack Squat", detail: "Machine - 3x10", muscles: "Quads & Glutes", duration: 3, tip: "Drive through heels, controlled on the way down.", alt: "Dumbbell Goblet Squats or Bulgarian Split Squats." },
-          { name: "Seated Cable Rows", detail: "Cable Tower - 3x10", muscles: "Mid-Back, Lats & Upper Back", duration: 3, tip: "Sit tall, pull handle to belly button, squeeze shoulder blades.", alt: "Chest-Supported DB Rows or T-Bar Row." },
-          { name: "Pec Deck or Cable Flyes", detail: "Machine/Cable - 3x12", muscles: "Chest Stretch & Isolation", duration: 3, tip: "Slight bend in elbows. Hug a wide tree, squeeze chest at center.", alt: "Flat Dumbbell Chest Flyes." },
-          { name: "Dumbbell Hammer Curls", detail: "Dumbbells - 3x12", muscles: "Biceps & Forearm Thickness", duration: 3, tip: "Palms facing each other. Curl up without swinging shoulders.", alt: "Rope Cable Curls." },
-          { name: "Overhead DB Tricep Extension", detail: "Single Dumbbell - 3x12", muscles: "Triceps (Long Head)", duration: 3, tip: "Hold DB overhead with both hands, lower behind head, press up.", alt: "Overhead Cable Tricep Extension." },
-          { name: "Cable Crunches", detail: "Core - 3x15", muscles: "Abs & Core", duration: 2, tip: "Focus on maximum abdominal contraction.", alt: "Hanging Knee Raises or Ab Wheel." },
-          { name: "Treadmill HIIT Finisher", detail: "Cardio Intervals - 12-15 Mins", muscles: "Cardio & Endurance", duration: 15, tip: "1 min walk recovery @ 3 mph, 30s power incline walk/sprint @ 6-8%.", alt: "Stationary Bike Interval Sprints." }
-        ]
-      }
-    };
+const masterGymSchedule = {
+    day1: {
+      title: "Day 1: Glutes, Lower Body & Heavy Core",
+      focus: "Machine Glutes & Legs + Heavy Core (~60 Min)",
+      exercises: [
+        { name: "Incline Treadmill Warm-Up", detail: "Cardio - 10 Mins (8-10% Incline)", muscles: "Glutes, Calves & Warm-Up", duration: 10, tip: "Press through heels to activate glutes.", alt: "Elliptical or Bike." },
+        { name: "Leg Press Machine", detail: "Machine - 3x10 (Slow 3s down)", muscles: "Quads & Glutes", duration: 3, tip: "Feet placed high and wide on board to hit glutes.", alt: "Plan B: DB Goblet Squats or DB Lunges." },
+        { name: "Seated Leg Curl Machine", detail: "Machine - 3x10-12", muscles: "Hamstrings & Glute Fold", duration: 3, tip: "Squeeze back of legs at full bend.", alt: "Plan B: DB RDLs / Romanian Deadlifts." },
+        { name: "Hip Abductor Machine (Outward)", detail: "Machine - 3x15 (Push OUTWARDS)", muscles: "Outer Glutes & Upper Hip", duration: 3, tip: "Lean slightly forward, hold squeeze 1 sec at widest point.", alt: "Plan B: Standing Cable Abduction or Resistance Band Walks." },
+        { name: "Seated Ab Crunch Machine", detail: "Machine - 3x15", muscles: "Upper Core", duration: 3, tip: "Squeeze ribs toward hips using core, not arms.", alt: "Plan B: Kneeling Cable Crunches or DB Mat Crunches." },
+        { name: "Captain's Chair Leg Raises", detail: "Tower - 3xMax", muscles: "Lower Abs", duration: 2, tip: "Lift knees toward chest smoothly without swinging.", alt: "Plan B: Lying Reverse Crunches on Mat." },
+        { name: "Post-Workout Hip & Hamstring Stretch", detail: "Pigeon Pose + Hip Flexor - 3 mins", muscles: "Lower Body Recovery", duration: 3, tip: "Hold each stretch 45-60s with deep breaths.", alt: "Seated Butterfly Stretch." }
+      ]
+    },
+    day2: {
+      title: "Day 2: Showy Arms, 3D Shoulders & Pull-Up Path",
+      focus: "Pull-Up Machine, Biceps, Triceps & Shoulder Machines (~60 Min)",
+      exercises: [
+        { name: "Incline Treadmill Walk", detail: "Warm-Up - 8 Mins", muscles: "Cardio Warm-Up", duration: 8, tip: "Brisk walk to get blood flowing.", alt: "Stationary Bike." },
+        { name: "Assisted Pull-Up Machine", detail: "Machine - 3x8-10", muscles: "Lats, Upper Back & Pull-Up Power", duration: 3, tip: "Drive elbows down to hips to pull chest to bar.", alt: "Plan B: Lat Pulldown Machine or Heavy Resistance Bands." },
+        { name: "Underhand Lat Pulldown Machine", detail: "Machine/Cable - 3x10", muscles: "Lats & Bicep Power", duration: 3, tip: "Reverse grip (palms facing you). Pull to upper chest.", alt: "Plan B: Single-Arm DB Rows." },
+        { name: "Overhead Shoulder Press Machine", detail: "Machine - 3x10", muscles: "Shoulders & Upper Arms", duration: 3, tip: "Press straight overhead without arching lower back.", alt: "Plan B: Seated DB Overhead Press." },
+        { name: "Cable Lateral Raise Tower", detail: "Cable - 3x12 per side", muscles: "Side Shoulder Cap (3D Width)", duration: 3, tip: "Lead upward with elbows to shoulder height.", alt: "Plan B: DB Lateral Raises." },
+        { name: "Cable Bicep Curl Tower", detail: "Bar or Rope - 3x12", muscles: "Biceps (Front Arm Sculpt)", duration: 3, tip: "Keep elbows glued to ribs, squeeze at top.", alt: "Plan B: DB Bicep / Hammer Curls." },
+        { name: "Cable Tricep Pushdown Tower", detail: "Rope Attachment - 3x12", muscles: "Triceps (Back Arm Definition)", duration: 3, tip: "Spread rope ends outward at bottom.", alt: "Plan B: DB Overhead Tricep Extension." },
+        { name: "Upper Body & Lat Stretch", detail: "Lat Wall Hang + Cross-Body Shoulder - 3 mins", muscles: "Shoulder & Upper Back Recovery", duration: 3, tip: "Hold stretch to prevent shoulder stiffness.", alt: "Doorway Chest/Shoulder Stretch." }
+      ]
+    },
+    day3: {
+      title: "Day 3: Full Body, Arm Blitz & Core Stability",
+      focus: "Compound Machines, Bicep/Tricep Blitz & Core (~60 Min)",
+      exercises: [
+        { name: "Hack Squat or Leg Press Machine", detail: "Machine - 3x10", muscles: "Quads & Glutes", duration: 3, tip: "Controlled downward tempo, push through heels.", alt: "Plan B: DB Goblet Squats." },
+        { name: "Seated Row Machine", detail: "Machine/Cable - 3x10", muscles: "Mid-Back & Posture", duration: 3, tip: "Pull handle toward belly, squeeze shoulder blades.", alt: "Plan B: DB Chest-Supported Rows." },
+        { name: "Pec Deck Chest Fly Machine", detail: "Machine - 3x12", muscles: "Chest Definition & Shoulder Mobility", duration: 3, tip: "Slight bend in elbows, squeeze arms inward at center.", alt: "Plan B: Flat DB Bench Flyes." },
+        { name: "Cable Hammer Curls", detail: "Rope Attachment - 3x12", muscles: "Biceps & Forearm Thickness", duration: 3, tip: "Palms facing each other, pull toward chin.", alt: "Plan B: Standing DB Hammer Curls." },
+        { name: "Overhead Cable Tricep Extension", detail: "Rope Attachment - 3x12", muscles: "Triceps (Long Head)", duration: 3, tip: "Extend rope forward over head, lock out elbows.", alt: "Plan B: Single Heavy DB Overhead Extension." },
+        { name: "Cable Pallof Press / Torso Rotation Machine", detail: "Cable/Machine - 3x12 per side", muscles: "Obliques & Core Stability", duration: 3, tip: "Brace core tight, move smoothly without rushing.", alt: "Plan B: Weighted Russian Twists on Mat." },
+        { name: "Treadmill HIIT Finisher", detail: "Cardio Intervals - 12 Mins", muscles: "Cardio & Endurance", duration: 12, tip: "1 min walk @ 3mph, 30s power incline walk/sprint.", alt: "Stationary Bike Sprints." },
+        { name: "Full Body Post-Workout Stretch", detail: "Downward Dog to Cobra + Child's Pose - 3 mins", muscles: "Spine, Abs & Full Body", duration: 3, tip: "Lengthen spine and relax deep core.", alt: "Cat-Cow Stretch." }
+      ]
+    }
+  };
 
     let activeDay = 'day1';
 
